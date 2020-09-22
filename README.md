@@ -103,3 +103,56 @@ Use docker-compose to bring down and destroy the running containers
 
 ### Run artisan commands
 `docker-compose run --rm artisan <command>`
+
+# How to connect mysql db to the laravel project and run database migrations
+
+**This section explains what credentials you need to change in your .env file to allow for a successful connection to the mysql database when using various laravel commands**
+
+**Also explained is how to run migrations so that the tables as specific in our ERD are created and added to the mysql databse**
+
+***IMPORTANT --- I thoroughly suggest you use persistant storage for your mysql database. This enables your mysql database to keep the database schema even if you destroy your containers with `docker-compose down`. It will make your life far easier and you will only have to run the `docker-compose run --rm artisan migrate` command once (unless an adjustment to the schema is made). The process to create persistant storage can be found in step 8 above.***
+
+## Step 1 - Adjusting your .env file 
+bring down the running docker containers
+
+`docker-compose down`
+
+In the /src drirectory open the .env with your editor of choice.
+
+Edit the APP_URL field to the following: 
+
+`APP_URL=http://localhost:8080`
+
+Edit the DB fields to the following:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+```
+
+bring up the docker containers
+
+`docker-compose up -d`
+
+**You will be able to verify the following worked by following the next step**
+
+## Step 2 -Migrating the migrations
+
+The following command will create the database tables in the mysql database according to the schema in the ERD and specification schedule:
+
+`docker-compose run --rm artisan migrate`
+
+If step 1 was followed correctly you should not have any errors.
+
+If you'd like to undo the creation of the tables in the mysql database run the following command:
+
+`docker-compose run --rm artisan migrate:rollback`
+
+**You can view the mysql database using a client such as [mysqlworkbench](https://dev.mysql.com/downloads/workbench/)**
+**The credentials are found above in step on (username=homestead password=secrect)** 
+
+Your mysql database now has the database tables added as per our ERD. If you do not use persistant mysql storage you will have to repeat step 2 each time you bring your containers up
