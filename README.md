@@ -161,13 +161,11 @@ Your mysql database now has the database tables added as per our ERD. If you do 
 
 **This part will explain the authentication system that has been implemented and the steps required to implement its functionality on your system**
 
-## You can use two domain names: admin.localhost (contains the admin and hr login) and localhost (contains the client login)
+admin routes: /register/admin and /login/admin eg. localhost:8080/register/admin
 
-admin routes (only accesible from admin.localhost domain): /register/admin and /login/admin eg. admin.localhost:8080/register/admin
+hr routes: /register/hr and /login/hr eg. localhost:8080/register/hr
 
-hr routes (only accesible from admin.localhost domain): /register/hr and /login/hr eg. admin.localhost:8080/register/hr
-
-Client routes (only accesible from localhost domain): /register and /login eg. localhost:8080/register
+Client routes: /register and /login eg. localhost:8080/register
 
 ## Blade views
 
@@ -177,11 +175,11 @@ Multiple views in resources/views/auth that contain the views for the login and 
 
 welcome.blade.php (This is the view that loads with no user login and on localhost domain)
 
-admin.blade.php (This is the view that loads after the admin login)
+admin/admin.blade.php (This is the view that loads after the admin login)
 
-hr.blade.php (This is the view that loads after the hr login)
+hr/hr.blade.php (This is the view that loads after the hr login)
 
-home.blade.php (This is the view that loads after the client login)
+client/home.blade.php (This is the view that loads after the client login)
 
 ## layouts
 

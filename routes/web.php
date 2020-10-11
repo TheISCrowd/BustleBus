@@ -30,6 +30,6 @@ Route::post('/login/hr', [App\Http\Controllers\Auth\LoginController::class, 'hrL
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin']);
 Route::post('/register/hr', [App\Http\Controllers\Auth\RegisterController::class, 'createHr']);
 
-Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'admin')->middleware('auth:admin');
-Route::view('/hr', 'hr')->middleware('auth:hr');
+Route::view('/home', 'client.home')->middleware('auth');
+Route::view('/admin', 'admin.admin')->middleware('auth:admin');
+Route::view('/hr', 'hr.hr')->middleware('auth:hr');
