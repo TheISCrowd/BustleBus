@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <!-- Please do not edit the blade code below this comment -->
                 <div class="card">
                     <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Register') }}</div>
 
@@ -74,6 +75,7 @@
                         </div>
                     </form>
                 </div>
+                <!-- Please do not edit the blade code above this comment -->
             </div>
         </div>
     </div>

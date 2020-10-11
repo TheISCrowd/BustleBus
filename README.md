@@ -205,4 +205,8 @@ Integrate the new migrations
 
 Edit the nginx default.conf file (bustlebus/nginx/default.conf) to change the port on which it is listening (port 443). This is for issues with ssl certificates
 
+`docker-compose down`
+
 `listen 443;`
+
+`docker-compose up -d`
