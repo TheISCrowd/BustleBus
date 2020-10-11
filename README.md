@@ -156,3 +156,53 @@ If you'd like to undo the creation of the tables in the mysql database run the f
 **The credentials are found above in step on (username=homestead password=secrect)** 
 
 Your mysql database now has the database tables added as per our ERD. If you do not use persistant mysql storage you will have to repeat step 2 each time you bring your containers up
+
+# Authentication login system explained
+
+**This part will explain the authentication system that has been implemented and the steps required to implement its functionality on your system**
+
+## You can use two domain names: admin.localhost (contains the admin and hr login) and localhost (contains the client login)
+
+admin routes (only accesible from admin.localhost domain): /register/admin and /login/admin eg. admin.localhost:8080/register/admin
+
+hr routes (only accesible from admin.localhost domain): /register/hr and /login/hr eg. admin.localhost:8080/register/hr
+
+Client routes (only accesible from localhost domain): /register and /login eg. localhost:8080/register
+
+## Blade views
+
+***Please note the comments in the resource/views/auth views. Specific blade elements cannot be changed. Changing these blade elements will stop the authentication system from routing correctly.***
+
+Multiple views in resources/views/auth that contain the views for the login and registration pages
+
+welcome.blade.php (This is the view that loads with no user login and on localhost domain)
+
+admin.blade.php (This is the view that loads after the admin login)
+
+hr.blade.php (This is the view that loads after the hr login)
+
+home.blade.php (This is the view that loads after the client login)
+
+## layouts
+
+an auth.blade.php has been created.
+
+# Step 1
+
+Install the authentication package with composer
+
+`docker-compose run --rm composer require laravel/ui`
+
+# Step 2
+
+Integrate the new migrations
+
+`docker-compose run --rm artisan migrate:rollback`
+
+`docker-compose run --rm artisan migrate`
+
+# Step 3
+
+Edit the nginx default.conf file (bustlebus/nginx/default.conf) to change the port on which it is listening (port 443). This is for issues with ssl certificates
+
+`listen 443;`
