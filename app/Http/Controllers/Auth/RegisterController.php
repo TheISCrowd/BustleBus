@@ -58,6 +58,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:225'],
+            'cell' => ['required', 'string', 'regex:(0)[0-9]{9}'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -73,7 +75,9 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
+            'cell' => $data['cell'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -90,34 +94,34 @@ class RegisterController extends Controller
 
     protected function createAdmin(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
 
-        try {
-            $admin = Admin::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-        } catch (QueryException $ex) {
-            return back()->withInput($request->only('name', 'email'))->with('email', 'An account already exists with this email address!');
-        }
+        $admin = Admin::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
 
         return redirect()->intended('admin');
     }
-    
+
     protected function createHr(Request $request)
     {
-        $this->validator($request->all())->validate();
-        
-        try {
-            $hr = Hr::create([
-                'name' => $request['name'],
-                'email' => $request['email'],
-                'password' => Hash::make($request['password']),
-            ]);
-        } catch (QueryException $ex) {
-            return back()->withInput($request->only('name' ,'email'))->with('email', 'An account already exists with this email address!');
-        }
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:hrs'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $hr = Hr::create([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+        ]);
 
         return redirect()->intended('hr');
     }

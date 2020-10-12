@@ -13,11 +13,11 @@ class CreateDriverlicenseTable extends Migration
      */
     public function up()
     {
-        Schema::create('driverlicense', function (Blueprint $table) {
+        Schema::create('driverlicenses', function (Blueprint $table) {
             $table->foreignID('driverID');
-            $table->foreign('driverID')->references('driverID')->on('driver');
+            $table->foreign('driverID')->references('driverID')->on('drivers');
             $table->string('licenseCode');
-            $table->foreign('licenseCode')->references('licenseCode')->on('license');
+            $table->foreign('licenseCode')->references('licenseCode')->on('licenses');
         });
     }
 
@@ -28,16 +28,16 @@ class CreateDriverlicenseTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('driverlicense');
-        Schema::dropIfExists('vehiclebooking');
-        Schema::dropIfExists('vehicle');
-        Schema::dropIfExists('license');
-        Schema::dropIfExists('bed');
-        Schema::dropIfExists('daytripdepot');
-        Schema::dropIfExists('depot');
-        Schema::dropIfExists('daytrip');
-        Schema::dropIfExists('booking');
-        Schema::dropIfExists('client');
-        Schema::dropIfExists('driver');
+        Schema::dropIfExists('driverlicenses');
+        Schema::dropIfExists('vehiclebookings');
+        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('licenses');
+        Schema::dropIfExists('beds');
+        Schema::dropIfExists('daytripdepots');
+        Schema::dropIfExists('depots');
+        Schema::dropIfExists('daytrips');
+        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('clients');
+        Schema::dropIfExists('drivers');
     }
 }

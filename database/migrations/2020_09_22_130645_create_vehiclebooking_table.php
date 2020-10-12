@@ -13,11 +13,11 @@ class CreateVehiclebookingTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehiclebooking', function (Blueprint $table) {
+        Schema::create('vehiclebookings', function (Blueprint $table) {
             $table->foreignID('bookingID');
-            $table->foreign('bookingID')->references('bookingID')->on('booking');
+            $table->foreign('bookingID')->references('bookingID')->on('bookings');
             $table->string('registrationNumber');
-            $table->foreign('registrationNumber')->references('registrationNumber')->on('vehicle');
+            $table->foreign('registrationNumber')->references('registrationNumber')->on('vehicles');
         });
     }
 

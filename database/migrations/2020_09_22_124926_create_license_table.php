@@ -13,7 +13,7 @@ class CreateLicenseTable extends Migration
      */
     public function up()
     {
-        Schema::create('license', function (Blueprint $table) {
+        Schema::create('licenses', function (Blueprint $table) {
             $table->string('licenseCode')->primary();
             $table->string('licenseDescription');
             $table->string('licenseClassification');

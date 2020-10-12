@@ -13,7 +13,7 @@ class CreateDepotTable extends Migration
      */
     public function up()
     {
-        Schema::create('depot', function (Blueprint $table) {
+        Schema::create('depots', function (Blueprint $table) {
             $table->id('depotID');
             $table->string('depotName');
             $table->string('street');

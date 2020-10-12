@@ -13,7 +13,7 @@ class CreateVehicleTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle', function (Blueprint $table) {
+        Schema::create('vehicles', function (Blueprint $table) {
             $table->string('registrationNumber')->primary();
             $table->date('dateOfPurchase');
             $table->string('make');
@@ -21,7 +21,7 @@ class CreateVehicleTable extends Migration
             $table->date('year');
             $table->integer('capacity');
             $table->string('requiredLicenseCode');
-            $table->foreign('requiredLicenseCode')->references('licenseCode')->on('license');
+            $table->foreign('requiredLicenseCode')->references('licenseCode')->on('licenses');
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBookingTable extends Migration
+class CreateBookingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateBookingTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id('bookingID');
             $table->date('startDate');
             $table->date('endDate');
             $table->integer('numberOfPassengers');
             $table->string('initalCollectionPoint');
             $table->foreignID('clientID');
-            $table->foreign('clientID')->references('clientID')->on('client');
-            $table->foreignID('driverID');
-            $table->foreign('driverID')->references('driverID')->on('driver')->nullable();
+            $table->foreign('clientID')->references('id')->on('users');
+            $table->foreignID('driverID')->nullable();
+            $table->foreign('driverID')->references('driverID')->on('drivers')->nullable();
         });
     }
 

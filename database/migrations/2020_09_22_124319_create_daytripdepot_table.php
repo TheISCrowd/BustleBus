@@ -13,13 +13,13 @@ class CreateDaytripdepotTable extends Migration
      */
     public function up()
     {
-        Schema::create('daytripdepot', function (Blueprint $table) {
+        Schema::create('daytripdepots', function (Blueprint $table) {
             $table->foreignId('tripNumber');
-            $table->foreign('tripNumber')->references('tripNumber')->on('daytrip');
+            $table->foreign('tripNumber')->references('tripNumber')->on('daytrips');
             $table->foreignId('startDestination');
-            $table->foreign('startDestination')->references('depotID')->on('depot');
+            $table->foreign('startDestination')->references('depotID')->on('depots');
             $table->foreignId('endDestination');
-            $table->foreign('endDestination')->references('depotID')->on('depot');
+            $table->foreign('endDestination')->references('depotID')->on('depots');
         });
     }
 

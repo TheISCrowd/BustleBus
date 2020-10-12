@@ -13,10 +13,10 @@ class CreateBedTable extends Migration
      */
     public function up()
     {
-        Schema::create('bed', function (Blueprint $table) {
+        Schema::create('beds', function (Blueprint $table) {
             $table->id('bedID');
             $table->foreignID('depotID');
-            $table->foreign('depotID')->references('depotID')->on('depot');
+            $table->foreign('depotID')->references('depotID')->on('depots');
         });
     }
 
