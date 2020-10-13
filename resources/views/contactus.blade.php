@@ -6,9 +6,8 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Contact Us</div>
-
                 <div class="card-body">
-                    Welcome to our contact details
+                
                 </div>
             </div>
         </div>
