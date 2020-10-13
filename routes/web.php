@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//public views
 Route::get('/', function () {
     return view('welcome');
 });
+Route::view('/contactus', 'contactus');
+Route::view('/aboutus', 'aboutus');
+Route::view('/faq', 'contactus');
 
 Auth::routes();
 
@@ -39,3 +42,4 @@ Route::view('/hr', 'hr.hr')->middleware('auth:hr');
 // booking get/post
 Route::get('/booking', [App\Http\Controllers\BookingController::class, 'viewForm'])->middleware('auth');
 Route::post('/booking', [App\Http\Controllers\BookingController::class, 'createBooking'])->middleware('auth');
+//
