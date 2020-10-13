@@ -7,9 +7,13 @@
             <div class="card">
                 <div class="card-header">Contact Us</div>
                 <div class="card-body">
+<<<<<<< HEAD
                 <aside>
                     <p>is this working</p>
                 </aside>
+=======
+                
+>>>>>>> Testing if Pushing is possible
                 </div>
             </div>
         </div>
