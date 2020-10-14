@@ -21,6 +21,7 @@ class CreateDriverTable extends Migration
             $table->string('contactNumber');
             $table->date('dateEmployed');
             $table->string('hometown');
+            $table->string('password');
         });
     }
 
