@@ -1,9 +1,10 @@
+<!-- Start Booking Page -->
+
 @extends('layouts.app')
 
-<script type="text/javascript" src="{{ asset('js/map.js') }}"></script>
-<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBSjIfZl3W9pahKIKoppSpS-hbD6XlvjFc&libraries=places&callback=initMap"></script>
-
 @section('content')
+<a href="{{ URL::route('booking.step.one.create') }}" class="btn btn-default"> Start Booking </a>
+
 <!--
 <div class="container mt-5">
 
