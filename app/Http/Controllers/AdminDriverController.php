@@ -18,5 +18,6 @@ class AdminDriverController extends Controller
         
     //Needs to be completed
     echo "<h1>This is the post method</h1>";
+    
     }
 }
