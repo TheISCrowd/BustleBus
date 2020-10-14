@@ -50,8 +50,8 @@ class LoginController extends Controller
     public function adminLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email'   => 'required|email|exists:admins',
+            'password' => 'required|min:8'
         ]);
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
@@ -69,8 +69,8 @@ class LoginController extends Controller
     public function hrLogin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email'   => 'required|email|exists:hrs',
+            'password' => 'required|min:8'
         ]);
 
         if (Auth::guard('hr')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
