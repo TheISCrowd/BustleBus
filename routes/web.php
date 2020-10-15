@@ -37,6 +37,7 @@ Auth::routes();
 
 
 
+
 /* ------------ All HUMAN RESOURCES views/routes START here ------------  */
 
 // admin and hr get/post register routes
@@ -47,6 +48,9 @@ Route::post('/register/hr', [App\Http\Controllers\Auth\RegisterController::class
 
 /* ------------ All HUMAN RESOURCES views/routes END here ------------  */
 
+
+
+
 /* ------------ All ADMIN views/routes START here ------------  */
 
 // create driver get/post routes
@@ -55,27 +59,30 @@ Route::post('/admin/new-driver', [App\Http\Controllers\AdminDriverController::cl
 
 /* ------------ All ADMIN views/routes END here ------------  */
 
+
+
+
 /* ------------ All CLIENT views/routes START here ------------  */
 
 // multi form booking get/post routes
-Route::get('/booking/start-booking', [App\Http\Controllers\Client\BookingController::class, 'startBooking'])->middleware('auth')->name('booking.start');
+Route::get('/booking/start-booking', [App\Http\Controllers\BookingController::class, 'startBooking'])->middleware('auth')->name('booking.start');
     // step-one
 Route::get('/booking/step-one', [App\Http\Controllers\BookingController::class, 'createStepOne'])->middleware('auth')->name('booking.step.one.create');
-Route::get('/booking/step-one', [App\Http\Controllers\BookingController::class, 'postStepOne'])->middleware('auth')->name('booking.step.one.post');
+Route::post('/booking/step-one', [App\Http\Controllers\BookingController::class, 'postStepOne'])->middleware('auth')->name('booking.step.one.post');
     // step-two
 Route::get('/booking/step-two', [App\Http\Controllers\BookingController::class, 'createStepTwo'])->middleware('auth')->name('booking.step.two.create');
-Route::get('/booking/step-two', [App\Http\Controllers\BookingController::class, 'postStepTwo'])->middleware('auth')->name('booking.step.two.post');
+Route::post('/booking/step-two', [App\Http\Controllers\BookingController::class, 'postStepTwo'])->middleware('auth')->name('booking.step.two.post');
     // step-three
 Route::get('/booking/step-three', [App\Http\Controllers\BookingController::class, 'createStepThree'])->middleware('auth')->name('booking.step.three.create');
-Route::get('/booking/step-three', [App\Http\Controllers\BookingController::class, 'postStepThree'])->middleware('auth')->name('booking.step.three.post');
+Route::post('/booking/step-three', [App\Http\Controllers\BookingController::class, 'postStepThree'])->middleware('auth')->name('booking.step.three.post');
     // step-four
 Route::get('/booking/step-four', [App\Http\Controllers\BookingController::class, 'createStepFour'])->middleware('auth')->name('booking.step.four.create');
-Route::get('/booking/step-four', [App\Http\Controllers\BookingController::class, 'postStepFour'])->middleware('auth')->name('booking.step.four.post');
+Route::post('/booking/step-four', [App\Http\Controllers\BookingController::class, 'postStepFour'])->middleware('auth')->name('booking.step.four.post');
     // step-five
 Route::get('/booking/step-five', [App\Http\Controllers\BookingController::class, 'createStepFive'])->middleware('auth')->name('booking.step.five.create');
-Route::get('/booking/step-five', [App\Http\Controllers\BookingController::class, 'postStepFive'])->middleware('auth')->name('booking.step.five.create');
+Route::post('/booking/step-five', [App\Http\Controllers\BookingController::class, 'postStepFive'])->middleware('auth')->name('booking.step.five.create');
     // summarise and confirm booking
 Route::get('/booking/step-five', [App\Http\Controllers\BookingController::class, 'createConfirmation'])->middleware('auth')->name('booking.step.five.create');
-Route::get('/booking/step-five', [App\Http\Controllers\BookingController::class, 'postConfirmation'])->middleware('auth')->name('booking.step.five.create');
+Route::post('/booking/step-five', [App\Http\Controllers\BookingController::class, 'postConfirmation'])->middleware('auth')->name('booking.step.five.create');
 
 /* ------------ All CLIENT views/routes END here ------------  */

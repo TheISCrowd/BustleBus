@@ -22,9 +22,18 @@ class SuperUserSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
+        // Create the hr user for the web application
         DB::table('admins')->insert([
             'name' => 'AdminUser',
             'email' => 'admin@bustlebus.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'John',
+            'surname' => 'Doe',
+            'cell' => '0845884750',
+            'email' => 'johndoe@gmail.com',
             'password' => Hash::make('password'),
         ]);
     }
