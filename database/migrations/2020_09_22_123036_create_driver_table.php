@@ -17,6 +17,7 @@ class CreateDriverTable extends Migration
             $table->id('driverID');
             $table->string('firstName');
             $table->string('lastName');
+            $table->string('email');
             $table->date('dateOfBirth');
             $table->string('contactNumber');
             $table->date('dateEmployed');

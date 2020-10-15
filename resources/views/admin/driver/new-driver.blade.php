@@ -13,12 +13,12 @@
                     <h1 style = "text-align:center;">Enter New Driver Credentials</h1>
                     <hr>
                     <div class="form-group row">
-                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                        <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="(John)" required autofocus>
+                            <input id="fistName" type="text" class="form-control @error('name') is-invalid @enderror" name="firstName" value="{{ old('name') }}" placeholder="(John)" required autofocus>
 
-                            @error('name')
+                            @error('firstName')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -29,12 +29,26 @@
                     @isset($url)
                     @else
                     <div class="form-group row">
-                        <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+                        <label for="lastName" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" placeholder="(Doe)" required autofocus>
+                            <input id="lastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" placeholder="(Doe)" required autofocus>
 
-                            @error('surname')
+                            @error('lastName')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="(johndoe@bustlebus.com)" required autocomplete="email">
+
+                            @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -56,12 +70,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="cell" class="col-md-4 col-form-label text-md-right">{{ __('Cell') }}</label>
+                        <label for="contactNumber" class="col-md-4 col-form-label text-md-right">{{ __('Cell') }}</label>
 
                         <div class="col-md-6">
-                            <input id="cell" type="text" class="form-control @error('cell') is-invalid @enderror" name="cell" value="{{ old('cell') }}" placeholder="(0845884750)" required autofocus>
+                            <input id="contactNumber" type="text" class="form-control @error('cell') is-invalid @enderror" name="cell" value="{{ old('cell') }}" placeholder="(0845884750)" required autofocus>
 
-                            @error('cell')
+                            @error('contactNumber')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -72,7 +86,7 @@
                     <div class= "form-group row">
                     <label for="dateEmployed" class="col-md-4 col-form-label text-md-right">{{ __('Date Employed') }}</label>
                         <div class="col-md-6">
-                            <input id="dateemployed" type="date" name="dateEmployed"   required autofocus>
+                            <input id="dateEmployed" type="date" name="dateEmployed"   required autofocus>
 
                             <!--@error('cell')
                             <span class="invalid-feedback" role="alert">
