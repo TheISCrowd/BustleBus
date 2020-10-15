@@ -25,6 +25,8 @@ Route::view('/faq', 'contactus');
 Route::view('/home', 'client.home')->middleware('auth');
 Route::view('/admin', 'admin.admin')->middleware('auth:admin');
 Route::view('/hr', 'hr.hr')->middleware('auth:hr');
+//created-driver view
+Route::view('/admin/dirver', 'driver.created-driver')->middleware('auth:admin');
 // admin and hr login get/post routes
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm'])->name('adminlogin');
 Route::get('/login/hr', [App\Http\Controllers\Auth\LoginController::class, 'showHrLoginForm'])->name('hrlogin');
