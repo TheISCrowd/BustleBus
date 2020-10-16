@@ -22,9 +22,9 @@ class BookingController extends Controller
     public function createStepOne(Request $request)
     {
         $booking = $request->session()->get('booking');
-        $daytrip = $request->session()->get('daytrip');
+        $daytrips = $request->session()->get('daytrip');
 
-        return view('client.booking.step-one', compact('booking', 'daytrip'));
+        return view('client.booking.step-one', compact('booking', 'daytrips'));
     }
 
     public function postStepOne(Request $request)
@@ -46,7 +46,7 @@ class BookingController extends Controller
             $request->session()->put('booking', $booking);
         }
 
-        
+
 
         $daytrips = [];
         foreach ($request->input('destinationsName') as $key => $value) {
@@ -54,10 +54,10 @@ class BookingController extends Controller
             $daytrip->fill(['destinationsName' => $value]);
             array_push($daytrips, $daytrip);
         }
-        
-        $request->session()->put('daytrip', $daytrips);
 
-        return redirect()->route('booking.step.two.create', compact('booking', 'daytrip'));
+        $request->session()->put('daytrips', $daytrips);
+
+        return redirect()->route('booking.step.two.create', compact('booking', 'daytrips'));
     }
 
     public function createStepTwo(Request $request)
@@ -66,5 +66,46 @@ class BookingController extends Controller
         $daytrips = $request->session()->get('daytrips');
 
         return view('client.booking.step-two', compact('booking', 'daytrips'));
+    }
+
+    public function postStepTwo(Request $request)
+    {
+        $booking = $request->session()->get('booking');
+        $daytrips = $request->session()->get('daytrips');
+
+
+        $numberOfPassengers = $request['infants'] + $request['children'] + $request['adults'] + $request['elderly'];
+        if ($numberOfPassengers > 15) {
+            return redirect()->route('booking.step.two.create', compact('booking', 'daytrips'))->withInput()->withErrors(['maximum' => 'Please reduce the number of passengers to below 15.']);
+        }
+
+        $booking->fill(['infants' => $request['infants'],
+                        'children' => $request['children'],
+                        'adults' => $request['adults'], 
+                        'elderly' => $request['elderly'],
+                        'elderly' => $request['elderly'],
+                        'disabled' => $request['disabled'],
+                        'babychair' => $request['babychair'],]);
+
+        $request->session()->put('booking', $booking);
+        $request->session()->put('daytrip', $daytrips);
+
+        return redirect()->route('booking.step.three.create', compact('booking', 'daytrips'));
+    }
+
+    public function createStepThree(Request $request) 
+    {
+        $booking = $request->session()->get('booking');
+        $daytrips = $request->session()->get('daytrips');
+
+        return view('client.booking.step-three' ,compact('booking', 'daytrips'));
+    }
+
+    public function postStepThree(Request $request)
+    {
+        $booking = $request->session()->get('booking');
+        $daytrips = $request->session()->get('daytrips');
+
+        
     }
 }

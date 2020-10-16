@@ -17,7 +17,15 @@ class CreateBookingsTable extends Migration
             $table->id('bookingID');
             $table->date('startDate');
             $table->date('endDate');
-            $table->integer('numberOfPassengers');
+            $table->integer('infants');
+            $table->integer('children');
+            $table->integer('adults');
+            $table->integer('elderly');
+            $table->boolean('disabled');
+            $table->boolean('babychair');
+            $table->boolean('roofrack');
+            $table->boolean('trailer');
+            $table->boolean('extra');
             $table->string('initalCollectionPoint');
             $table->foreignID('clientID');
             $table->foreign('clientID')->references('id')->on('users');

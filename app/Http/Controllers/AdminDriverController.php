@@ -27,7 +27,7 @@ class AdminDriverController extends Controller
         $this->validate($request,  [
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:225'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'dateOfBirth'=>['required','date'],
             'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'dateEmployed'=> ['required','date'],
@@ -35,6 +35,7 @@ class AdminDriverController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
+        echo "hello";
         $driver = Driver::create([
             'firstName' => $request['FirstName'],
             'lastName' => $request['lastName'],

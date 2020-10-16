@@ -19,7 +19,7 @@ class CreateDaytripTable extends Migration
             $table->foreign('bookingID')->references('bookingID')->on('bookings');
             $table->string('destinationsName');
             $table->date('date');
-            $table->boolean('bedRequest')->default('false');
+            $table->boolean('bedRequest')->nullable();
         });
     }
 
