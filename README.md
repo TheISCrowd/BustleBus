@@ -208,3 +208,28 @@ Edit the nginx default.conf file (bustlebus/nginx/default.conf) to change the po
 `listen 443;`
 
 `docker-compose up -d`
+
+# Seeding the database with users for Admin, Hr and Client users
+
+Run this command to seed the database with users here.
+
+` docker-compose run --rm artisan db:seed --class=SuperUserSeeder `
+
+Admin   - username: admin@bustlebus.com     password: password
+Hr      - username: hr@bustlebus.com        password: password
+Client  - username: johndoe@bustlebus.com   password: password
+
+# Booking routes and view 
+
+**this will explain the booking routes and views
+
+view directory structure: views/client/booking/
+```
+views/client/booking/start-booking.blade.php    - first wizard page
+views/client/booking/step-one.blade.php         - select locations page
+views/client/booking/step-two.blade.php         - select passengers page
+views/client/booking/step-three.blade.php       - select luggage page
+views/client/booking/step-four.blade.php        - select vehicles page
+views/client/booking/step-five.blade.php        - confirm booking and details 
+views/client/booking/summary-booking.php        - display booking success and summary
+```
