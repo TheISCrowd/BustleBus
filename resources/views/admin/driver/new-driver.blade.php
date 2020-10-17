@@ -14,7 +14,7 @@
                     <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                     <div class="col-md-6">
-                        <input id="fistName" type="text" class="form-control @error('name') is-invalid @enderror" name="firstName" value="{{ old('name') }}" placeholder="(John)" required autofocus>
+                        <input id="fistName" type="text" class="form-control @error('fistName') is-invalid @enderror" name="firstName" value="{{ old('fistName') }}" placeholder="(John)" required autofocus>
 
                         @error('firstName')
                         <span class="invalid-feedback" role=alert>
@@ -71,7 +71,7 @@
                     <label for="contactNumber" class="col-md-4 col-form-label text-md-right">{{ __('Cell') }}</label>
 
                     <div class="col-md-6">
-                        <input id="contactNumber" type="text" class="form-control @error('cell') is-invalid @enderror" name="cell" value="{{ old('cell') }}" placeholder="(0845884750)" required autofocus>
+                        <input id="contactNumber" type="text" class="form-control @error('contactNumber') is-invalid @enderror" name="contactNumber" value="{{ old('contactNumber') }}" placeholder="(0845884750)" required autofocus>
 
                         @error('contactNumber')
                         <span class="invalid-feedback" role=alert>
@@ -98,7 +98,7 @@
                     <label for="hometown" class="col-md-4 col-form-label text-md-right">{{ __('Home Town') }}</label>
 
                     <div class="col-md-6">
-                        <input id="hometown" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('hometown') }}" placeholder="(Cape Town)" required autofocus>
+                        <input id="hometown" type="text" class="form-control @error('hometown') is-invalid @enderror" name="hometown" value="{{ old('hometown') }}" placeholder="(Cape Town)" required autofocus>
 
                         @error('hometown')
                         <span class="invalid-feedback" role=alert>

@@ -11,7 +11,7 @@ class Driver extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['firstName', 'lastName','email', 'dateOfBirth', 'contactNumber', 'dateEmployed', 'hometown'];
+    public $fillable = ['firstName', 'lastName','email', 'dateOfBirth', 'contactNumber', 'dateEmployed', 'hometown', 'password'];
 
     public $hidden = [ 'password'];
 }

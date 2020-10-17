@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Driver;
+use App\Models\Driverlicense;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\QueryException;
 use PhpParser\Node\Stmt\TryCatch;
+use Illuminate\Support\Facades\DB;
 
 class AdminDriverController extends Controller
 {
@@ -31,13 +33,13 @@ class AdminDriverController extends Controller
             'dateOfBirth'=>['required','date'],
             'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'dateEmployed'=> ['required','date'],
-            'homeTown' => ['required','string', 'max:255'],
+            'hometown' => ['required','string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        echo "hello";
+        
         $driver = Driver::create([
-            'firstName' => $request['FirstName'],
+            'firstName' => $request['firstName'],
             'lastName' => $request['lastName'],
             'email' => $request['email'],
             'dateOfBirth' => $request['dateOfBirth'],
@@ -46,6 +48,12 @@ class AdminDriverController extends Controller
             'hometown' => $request['hometown'],
             'password' => Hash::make($request['password']),
         ]); 
+        $driverlicense = Driverlicense::create([
+            'driverID' => DB::table('drivers')->where('email', $request['email'])->value('driverID'),
+            'licenseCode' => $request['licenseCode'],
+        ]);
+    
         return redirect()->intended('created-driver');  
+            
     }
 }
