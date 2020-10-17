@@ -219,6 +219,12 @@ Admin   - username: admin@bustlebus.com     password: password
 Hr      - username: hr@bustlebus.com        password: password
 Client  - username: johndoe@bustlebus.com   password: password
 
+# seeding the "license" table to meet the FK dependecy with table "driverlicense"
+
+Run this command to seed the database with Licenses
+
+` docker-compose run --rm artisan db:seed --class=LicenseTypeSeeder `
+
 # Booking routes and view 
 
 **this will explain the booking routes and views
