@@ -26,6 +26,7 @@ class CreateBookingsTable extends Migration
             $table->boolean('roofrack');
             $table->boolean('trailer');
             $table->boolean('extra');
+            $table->string('vehicleType');
             $table->string('initalCollectionPoint');
             $table->foreignID('clientID');
             $table->foreign('clientID')->references('id')->on('users');

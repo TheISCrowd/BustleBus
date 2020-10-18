@@ -31,7 +31,7 @@ function initAutocomplete() {
         return;
       }
       var bounds = new google.maps.LatLngBounds();
-      document.getElementById('initalCollectionPoint').value = place.geometry.location; 
+      document.getElementById('initalCollectionPoint').value = place; 
       marker.setPosition(place.geometry.location);
   
       if (place.geometry.viewport) {

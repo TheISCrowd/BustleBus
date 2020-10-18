@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Auth;
 
 /* ------------ All PUBLIC views/routes START here ------------  */
 
-//public views
+//public page views
 Route::get('/', function () {return view('welcome');});
 Route::view('/contactus', 'contactus');
 Route::view('/aboutus', 'aboutus');
 Route::view('/faq', 'contactus');
-// client, admin, hr homepage views
-Route::view('/home', 'client.home')->middleware('auth');
-Route::view('/admin', 'admin.admin')->middleware('auth:admin');
+// client login routes helper class
+Auth::routes();
+
 Route::view('/hr', 'hr.hr')->middleware('auth:hr');
 //created-driver view
 Route::view('/admin/dirver', 'driver.created-driver')->middleware('auth:admin');
@@ -32,8 +32,7 @@ Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 's
 Route::get('/login/hr', [App\Http\Controllers\Auth\LoginController::class, 'showHrLoginForm'])->name('hrlogin');
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'adminLogin']);
 Route::post('/login/hr', [App\Http\Controllers\Auth\LoginController::class, 'hrLogin']);
-// client login routes helper class
-Auth::routes();
+
 
 /* ------------ All PUBLIC views/routes END here ------------  */
 
@@ -42,11 +41,13 @@ Auth::routes();
 
 /* ------------ All HUMAN RESOURCES views/routes START here ------------  */
 
+// hr homepage view
+Route::view('/home', 'client.home')->middleware('auth');
 // admin and hr get/post register routes
-Route::get('/register/admin', [App\Http\Controllers\Auth\RegisterController::class, 'showAdminRegisterForm'])->middleware('auth:hr');
-Route::get('/register/hr', [App\Http\Controllers\Auth\RegisterController::class, 'showHrRegisterForm'])->middleware('auth:hr');
-Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin'])->middleware('auth:hr');
-Route::post('/register/hr', [App\Http\Controllers\Auth\RegisterController::class, 'createHr'])->middleware('auth:hr');
+Route::get('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'showAdminRegisterForm'])->middleware('auth:hr');
+Route::get('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'showHrRegisterForm'])->middleware('auth:hr');
+Route::post('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin'])->middleware('auth:hr');
+Route::post('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'createHr'])->middleware('auth:hr');
 
 /* ------------ All HUMAN RESOURCES views/routes END here ------------  */
 
@@ -55,6 +56,8 @@ Route::post('/register/hr', [App\Http\Controllers\Auth\RegisterController::class
 
 /* ------------ All ADMIN views/routes START here ------------  */
 
+// admin homepage
+Route::view('/admin', 'admin.admin')->middleware('auth:admin');
 // create driver get/post routes
 Route::get('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'showNewDriverForm'])->middleware('auth:admin');
 Route::post('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'createNewDriver'])->name('new.driver.post')->middleware('auth:admin');
@@ -84,7 +87,6 @@ Route::post('/booking/step-four', [App\Http\Controllers\BookingController::class
 Route::get('/booking/step-five', [App\Http\Controllers\BookingController::class, 'createStepFive'])->middleware('auth')->name('booking.step.five.create');
 Route::post('/booking/step-five', [App\Http\Controllers\BookingController::class, 'postStepFive'])->middleware('auth')->name('booking.step.five.create');
     // summarise and confirm booking
-Route::get('/booking/step-five', [App\Http\Controllers\BookingController::class, 'createConfirmation'])->middleware('auth')->name('booking.step.five.create');
-Route::post('/booking/step-five', [App\Http\Controllers\BookingController::class, 'postConfirmation'])->middleware('auth')->name('booking.step.five.create');
+Route::get('/booking/summary-booking', [App\Http\Controllers\BookingController::class, 'createConfirmation'])->middleware('auth')->name('booking.summary.create');
 
 /* ------------ All CLIENT views/routes END here ------------  */
