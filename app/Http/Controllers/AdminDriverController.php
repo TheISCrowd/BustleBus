@@ -1,5 +1,5 @@
 <?php
-
+//This is a controller to control the flow of data from the new-driver.blade.php to the dirverlicenses and dirvers tables in the database.
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Driver;
@@ -22,10 +22,10 @@ class AdminDriverController extends Controller
     
 
     // this is the post function to add a new driver into the data base
-    // look at the createAdmin/create Hr function for the how to or look at the laravel documents 
+    
     public function createNewDriver(Request $request) 
     {  
-    //Needs to be completed
+    //Validator for all data from the input form. *field name* => [Specifictations]
         $this->validate($request,  [
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:225'],
@@ -37,7 +37,7 @@ class AdminDriverController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        
+        //calls the Dirver model to create a new driver field in the table.
         $driver = Driver::create([
             'firstName' => $request['firstName'],
             'lastName' => $request['lastName'],
@@ -48,11 +48,12 @@ class AdminDriverController extends Controller
             'hometown' => $request['hometown'],
             'password' => Hash::make($request['password']),
         ]); 
+        //calls the driverlicense model to create an new field that can be added to the diverlicenses table.
         $driverlicense = Driverlicense::create([
             'driverID' => DB::table('drivers')->where('email', $request['email'])->value('driverID'),
             'licenseCode' => $request['licenseCode'],
         ]);
-    
+            
         return redirect()->intended('created-driver');  
             
     }

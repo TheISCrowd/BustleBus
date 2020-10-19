@@ -5,10 +5,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        <!--simple form for entering driver details into the drivers table.-->
+        <!--####important####-->
+        <!--If edited please ensure that all names and ID's are the same otherwise the backend wont work.-->
             <form method="POST" action="{{ route('new.driver.post') }}">
 
                 @csrf
-                <h1 style="text-align:center;">Enter New Driver Credentials</h1>
+                <h1>Enter New Driver Credentials</h1>
                 <hr>
                 <div class="form-group row">
                     <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>

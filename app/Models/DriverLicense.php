@@ -10,7 +10,7 @@ class Driverlicense extends Model
     use HasFactory;
 
     public $timestamps = false;
-
+    //derfines the fields to be interacted with from the license table.
     public $fillable = ['driverID','licenseCode'];
 
 }
