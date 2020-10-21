@@ -19,6 +19,11 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v3.0.3/css/line.css">
+        <!-- <i class="uim uim-map-pin"></i> -->
+
     </head>
     <body>
         <div id="app">
