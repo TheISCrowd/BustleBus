@@ -41,7 +41,7 @@
                     @if($numPassengers > 4 || $trailer == true || $disabled == true || $extra == true)
                     <p>This type of vehicle cannot meet your required specifications</p>
                     @else
-                    <input type="radio" class="form-control" name="vehicle" id="sedan">
+                    <input type="radio" class="form-control" name="vehicleType" value="Sedan">
                     @endif
 
                     <label>Suv</label>
@@ -49,12 +49,12 @@
                     @if($numPassengers > 6)
                     <p>This type of vehicle cannot meet your required specifications</p>
                     @else
-                    <input type="radio" class="form-control" name="vehicle" id="suv">
+                    <input type="radio" class="form-control" name="vehicleType" value="Suv">
                     @endif
 
                     <!-- a van meets all of the required specifications so no if statements -->
                     <label>Van</label>
-                    <input type="radio" class="form-control" name="vehicle" id="van">
+                    <input type="radio" class="form-control" name="vehicleType" value="Van">
 
                 </div>
                 <!-- button for form post -->

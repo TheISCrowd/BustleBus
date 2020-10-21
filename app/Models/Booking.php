@@ -11,5 +11,5 @@ class Booking extends Model
     public $timestamps = false;
 
     // use HasFactory;
-    public $fillable = ['startDate', 'endDate', 'infants', 'children', 'adults', 'elderly', 'disabled', 'babychair', 'roofrack', 'trailer', 'extra', 'initalCollectionPoint', 'clientID', 'driverID'];
+    public $fillable = ['startDate', 'endDate', 'infants', 'children', 'adults', 'elderly', 'disabled', 'babychair', 'roofracks', 'trailer', 'extra', 'vehicleType', 'initalCollectionPoint', 'latLong', 'clientID', 'driverID'];
 }

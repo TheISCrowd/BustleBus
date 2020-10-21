@@ -109,7 +109,7 @@ class BookingController extends Controller
         // fill booking sesion variable with input data
         $booking = $request->session()->get('booking');
         $booking->fill(['trailer' => $request['trailer'],
-                       'roofrack' => $request['roofrack'],
+                       'roofracks' => $request['roofracks'],
                        'extra' => $request['extra']]);
         $request->session()->put('booking', $booking);
 
@@ -131,7 +131,7 @@ class BookingController extends Controller
     public function postStepFour(Request $request) {
         // fill booking session variable with the vehicle type
         $booking = $request->session()->get('booking');
-        $booking->fill(['vehicleType' => $request['vehicle']]);
+        $booking->fill(['vehicleType' => $request['vehicleType']]);
         $request->session()->put('booking', $booking);
 
         return redirect()->route('booking.step.five.create');

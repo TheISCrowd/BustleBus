@@ -28,6 +28,7 @@ class CreateBookingsTable extends Migration
             $table->boolean('extra');
             $table->string('vehicleType');
             $table->string('initalCollectionPoint');
+            $table->string('latLong');
             $table->foreignID('clientID');
             $table->foreign('clientID')->references('id')->on('users');
             $table->foreignID('driverID')->nullable();

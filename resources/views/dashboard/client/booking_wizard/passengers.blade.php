@@ -9,8 +9,8 @@
     <div class="row justify-content-center">
         <a href="{{ URL::route('booking.step.one.create') }}" class="btn btn-default"> Locations step one </a>
         <a href="{{ URL::route('booking.step.two.create') }}" class="btn btn-default"> Passengers step two </a>
-        <a href="{{ URL::route('booking.step.three.create') }}" class="btn btn-default"> Luggage step three </a>
-        <a href="{{ URL::route('booking.step.four.create') }}" class="btn btn-default"> Vehciles step four </a>
+        <a href="#" class="btn btn-default"> Luggage step three </a>
+        <a href="#" class="btn btn-default"> Vehciles step four </a>
     </div>
 
     <form method="POST" action="{{ route('booking.step.two.post') }}">

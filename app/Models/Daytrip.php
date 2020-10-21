@@ -11,5 +11,5 @@ class Daytrip extends Model
 
     public $timestamps = false;
 
-    public $fillable = ['bookingID', 'destinationsName', 'date', 'bedRequest'];
+    public $fillable = ['bookingID', 'destinationsName', 'latLong', 'date', 'bedRequest'];
 }
