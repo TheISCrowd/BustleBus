@@ -13,8 +13,29 @@
                             {{ session('status') }}
                         </div>
                     @endif
+  
+                    <!-- $user variable is passed with login view to determine which user is logged in -->
 
-                    {{ __('You are logged in!') }}
+                    <!-- client so $user == 'client' -->
+                    @if($user == 'client')
+
+                    {{ __('Client logged in!') }}
+
+                    @endif
+
+                    <!-- admin so $user == 'admin' -->
+                    @if($user == 'admin')
+
+                    {{ __('Admin logged in!') }}
+
+                    @endif
+
+                    <!-- human resources so $user == 'hr' -->
+                    @if($user == 'hr')
+
+                    {{ __('Human Resources logged in!') }}
+
+                    @endif
                 </div>
             </div>
         </div>
