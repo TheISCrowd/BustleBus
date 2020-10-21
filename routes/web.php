@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 /* ------------ All PUBLIC views/routes START here ------------  */
 
 //public page views
-Route::get('/', function () {return view('welcome');});
+Route::get('/', function () {return view('home');});
 Route::view('/contactus', 'contactus');
 Route::view('/aboutus', 'aboutus');
 Route::view('/faq', 'contactus');
