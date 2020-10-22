@@ -1,4 +1,4 @@
-<table method = "GET" action="{{ route('hr.get.admin') }}">
+<table>
     <tr>
         <th><strong>Admin ID<strong></th>
         <th><strong>Name<strong></th>

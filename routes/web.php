@@ -39,13 +39,13 @@ Route::post('/login/hr', [App\Http\Controllers\Auth\LoginController::class, 'hrL
 /* ------------ All HUMAN RESOURCES views/routes START here ------------  */
 
 // hr homepage view
-Route::view('/hr', 'dashboard.dashboard', ['user' => 'hr'])->middleware('auth:hr');
+Route::get('/hr',[App\Http\Controllers\DashboardController::class, 'generateHrDashboard'])->middleware('auth:hr');
 // admin and hr get/post register routes
-Route::get('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'showAdminRegisterForm'])->middleware('auth:hr');
+Route::get('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'showAdminRegisterForm'])->name('registeradmin')->middleware('auth:hr');
 Route::get('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'showHrRegisterForm'])->middleware('auth:hr');
 Route::post('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin'])->middleware('auth:hr');
 Route::post('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'createHr'])->middleware('auth:hr');
-Route::get('/hr',[App\Http\Controllers\HumanResourcesController::class, 'getAllAdmin'])->name('hr.get.admin');
+
 
 /* ------------ All HUMAN RESOURCES views/routes END here ------------  */
 
@@ -55,13 +55,13 @@ Route::get('/hr',[App\Http\Controllers\HumanResourcesController::class, 'getAllA
 /* ------------ All ADMIN views/routes START here ------------  */
 
 // admin homepage
-Route::view('/admin', 'dashboard.dashboard', ['user' => 'admin'])->middleware('auth:admin');
+Route::get('/admin',[App\Http\Controllers\DashboardController::class, 'getAlldrivers'])->name('admin.get.driver')->middleware('auth:admin');
 // create driver get/post routes
 Route::get('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'showNewDriverForm'])->middleware('auth:admin');
 Route::post('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'createNewDriver'])->name('new.driver.post')->middleware('auth:admin');
 //created-driver view
 Route::view('/admin/driver', 'driver.created-driver')->middleware('auth:admin');
-Route::get('/admin',[App\Http\Controllers\AdminController::class, 'getAlldrivers'])->name('admin.get.driver')->middleware('auth:admin');
+
 /* ------------ All ADMIN views/routes END here ------------  */
 
 

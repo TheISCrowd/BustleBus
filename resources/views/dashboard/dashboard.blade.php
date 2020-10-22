@@ -9,37 +9,59 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
-  
+
                     <!-- $user variable is passed with login view to determine which user is logged in -->
 
-                    <!-- client so $user == 'client' -->
-                    @if($user == 'client')
+                    @if(Auth::guard('web')->check())
 
                     {{ __('Client logged in!') }}
 
                     @endif
 
-                    <!-- admin so $user == 'admin' -->
-                    @if($user == 'admin')
-                    
+
+                    @if(Auth::guard('admin')->check())
+
                     {{ __('Admin logged in!') }}
 
-                        @include ('dashboard.admin.driver.readdrivers')
-                        @include ('dashboard.driver.new-driver')
+                    @include ('dashboard.admin.driver.readdrivers')
+
+                    @include ('dashboard.driver.new-driver')
                     @endif
 
                     <!-- human resources so $user == 'hr' -->
-                    @if($user == 'hr')
+                    @if(Auth::guard('hr')->check())
 
                     {{ __('Human Resources logged in!') }}
 
-                        @include('dashboard.hr.readadmins')
-                        
-                        @include ('dashboard.admin.driver.readdrivers')
+
+                    <div class="container">
+                        @include('dashboard.admin.readadmins', ['admins' => $admins])
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseAdmin" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Create Admin
+                        </a>
+
+                        <div class="collapse" id="collapseAdmin">
+                            <div class="card card-body">
+                                @include('auth.registerbland', ['url' => 'admin'])
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        @include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseDriver" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Create Driver
+                        </a>
+                        <div class="collapse" id="collapseDriver">
+                            <div class="card card-body">
+                                @include('dashboard.admin.driver.new-driver')
+                            </div>
+                        </div>
+                    </div>
                     @endif
                 </div>
             </div>

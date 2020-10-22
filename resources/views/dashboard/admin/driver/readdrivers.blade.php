@@ -1,4 +1,4 @@
-<table method = "GET" action="{{ route('admin.get.driver') }}">
+<table>
     <tr>
         <th><strong>Driver ID<strong></th>
         <th><strong>First Name<strong></th>
