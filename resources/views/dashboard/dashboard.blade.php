@@ -25,7 +25,7 @@
 
                     <!-- admin so $user == 'admin' -->
                     @if($user == 'admin')
-
+                    
                     {{ __('Admin logged in!') }}
 
                         @include ('dashboard.admin.driver.readdrivers')
@@ -37,16 +37,9 @@
 
                     {{ __('Human Resources logged in!') }}
 
-                        <table method = "GET" action="{{ route('hr.get.admin') }}">
-                            <th colspan ="3"><strong>List of Admins<strong></th>
-                            @foreach ($admins as $admin)
-                            <tr>
-                                <td>{{$admin->id}}</td>
-                                <td>{{$admin->name}}</td>
-                                <td>{{$admin->email}}</td>
-                            </tr>
-                            @endforeach
-                        </table>
+                        @include('dashboard.hr.readadmins')
+                        
+                        @include ('dashboard.admin.driver.readdrivers')
                     @endif
                 </div>
             </div>

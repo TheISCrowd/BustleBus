@@ -46,6 +46,7 @@ Route::get('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::cla
 Route::post('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin'])->middleware('auth:hr');
 Route::post('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'createHr'])->middleware('auth:hr');
 Route::get('/hr',[App\Http\Controllers\HumanResourcesController::class, 'getAllAdmin'])->name('hr.get.admin');
+
 /* ------------ All HUMAN RESOURCES views/routes END here ------------  */
 
 
@@ -60,7 +61,7 @@ Route::get('/admin/new-driver', [App\Http\Controllers\AdminDriverController::cla
 Route::post('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'createNewDriver'])->name('new.driver.post')->middleware('auth:admin');
 //created-driver view
 Route::view('/admin/driver', 'driver.created-driver')->middleware('auth:admin');
-Route::get('/admin',[App\Http\Controllers\AdminController::class, 'getAlldrivers'])->name('admin.get.driver');
+Route::get('/admin',[App\Http\Controllers\AdminController::class, 'getAlldrivers'])->name('admin.get.driver')->middleware('auth:admin');
 /* ------------ All ADMIN views/routes END here ------------  */
 
 
