@@ -26,10 +26,31 @@
                     @if(Auth::guard('admin')->check())
 
                     {{ __('Admin logged in!') }}
+                    <div class="container">
+                    @include('dashboard.admin.readbookings', ['bookings' => $bookings])
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseBookings" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Create Booking
+                        </a>
 
-                    @include ('dashboard.admin.driver.readdrivers')
+                        <div class="collapse" id="collapseBookings">
+                            <div class="card card-body">
+                                
+                            </div>
+                        </div>
+                    </div>
 
-                    @include ('dashboard.driver.new-driver')
+                    <div class="container">
+                    @include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseDriver" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Create Driver
+                        </a>
+                        <div class="collapse" id="collapseDriver">
+                            <div class="card card-body">
+                            @include('dashboard.admin.driver.new-driver')
+                            </div>
+                        </div>
+                    </div>
+                    
                     @endif
 
                     <!-- human resources so $user == 'hr' -->

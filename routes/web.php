@@ -55,7 +55,7 @@ Route::post('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::cl
 /* ------------ All ADMIN views/routes START here ------------  */
 
 // admin homepage
-Route::get('/admin',[App\Http\Controllers\DashboardController::class, 'getAlldrivers'])->name('admin.get.driver')->middleware('auth:admin');
+Route::get('/admin',[App\Http\Controllers\DashboardController::class, 'generateAdminDashboard'])->middleware('auth:admin');
 // create driver get/post routes
 Route::get('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'showNewDriverForm'])->middleware('auth:admin');
 Route::post('/admin/new-driver', [App\Http\Controllers\AdminDriverController::class, 'createNewDriver'])->name('new.driver.post')->middleware('auth:admin');

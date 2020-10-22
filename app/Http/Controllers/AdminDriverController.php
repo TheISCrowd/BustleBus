@@ -54,7 +54,7 @@ class AdminDriverController extends Controller
             'licenseCode' => $request['licenseCode'],
         ]);
             
-        return redirect()->intended('created-driver');  
+        return redirect()->intended('dashboard.dashboard');  
             
     }
 }

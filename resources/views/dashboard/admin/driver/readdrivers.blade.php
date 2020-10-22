@@ -1,4 +1,4 @@
-<table>
+<table class = "table">
     <tr>
         <th><strong>Driver ID<strong></th>
         <th><strong>First Name<strong></th>

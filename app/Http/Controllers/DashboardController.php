@@ -28,4 +28,10 @@ class DashboardController extends Controller
         $drivers = $this->getAllDrivers();
         return view('dashboard.dashboard', compact('admins', 'drivers'));
     }
+    public function generateAdminDashboard()
+    {
+        $bookings = $this->getAllBookings();
+        $drivers = $this->getAllDrivers();
+        return view('dashboard.dashboard', compact('bookings', 'drivers'));
+    }
 }

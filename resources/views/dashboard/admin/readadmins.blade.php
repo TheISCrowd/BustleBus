@@ -1,4 +1,4 @@
-<table>
+<table class = "table">
     <tr>
         <th><strong>Admin ID<strong></th>
         <th><strong>Name<strong></th>

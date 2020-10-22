@@ -58,7 +58,7 @@
                 <div class="form-group row">
                     <label for="dateOfBirth" class="col-md-4 col-form-label text-md-right">{{ __('Date Of Birth') }}</label>
                     <div class="col-md-6">
-                        <input id="dateOfBirth" type="date" name="dateOfBirth" required autofocus>
+                        <input id="dateOfBirth" type="date" name="dateOfBirth"  required autofocus>
 
                         @error('dateOfBirth')
                         <span class="invalid-feedback" role=alert>
