@@ -17,7 +17,7 @@ class AdminDriverController extends Controller
 {
     // this is the get function to display the view
     public function showNewDriverForm() {
-        return view('admin.driver.new-driver');
+        return view('dashboard.admin.driver.new-driver');
     }
     
 

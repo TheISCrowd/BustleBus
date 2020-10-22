@@ -1,6 +1,4 @@
-@extends('layouts.auth')
 
-@section('content')
 
 <div class="container">
     <div class="row justify-content-center">
@@ -11,7 +9,7 @@
             <form method="POST" action="{{ route('new.driver.post') }}">
 
                 @csrf
-                <h1>Enter New Driver Credentials</h1>
+                <h3>Enter New Driver Credentials</h3>
                 <hr>
                 <div class="form-group row">
                     <label for="firstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
@@ -158,4 +156,3 @@
         </div>
     </div>
 </div>
-@endsection

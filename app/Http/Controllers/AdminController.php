@@ -18,6 +18,11 @@ class AdminController extends Controller
 {
     public function getAllBookings(){
         $bookings = Booking::all();
-        return view('admin.admin',compact('bookings'));
-    }      
+        return view('dashboard.dashboard',compact('bookings'),['user'=>'admin']);
+    }  
+    
+    public function getAllDrivers(){
+        $drivers = Driver::all();
+        return view('dashboard.dashboard',compact('drivers'),['user'=>'admin']);
+    } 
 }
