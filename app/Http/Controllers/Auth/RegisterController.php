@@ -92,11 +92,15 @@ class RegisterController extends Controller
 
     protected function createAdmin(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->with(['failadmin' => 'The admin was not created! Click "Create Admin" for more information.'])->withInput()->withErrors($validator);
+        }
 
         $admin = Admin::create([
             'name' => $request['name'],
@@ -109,11 +113,16 @@ class RegisterController extends Controller
 
     protected function createHr(Request $request)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:hrs'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+
+        if($validator->fails()) {
+            return redirect()->back()->with(['failhr' => 'The hr was not created! Click "Create Human Resource" for more information.'])->withInput()->withErrors($validator);
+        }
 
         $hr = Hr::create([
             'name' => $request['name'],
@@ -121,6 +130,46 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['successhr' => 'The hr was created succesfully!']);
     }
+
+        // this is the post function to add a new driver into the data base  
+        public function createDriver(Request $request)
+        {
+            //Validator for all data from the input form. *field name* => [Specifictations]
+            $validator = Validator::make($request->all(),  [
+                'firstName' => ['required', 'string', 'max:255'],
+                'lastName' => ['required', 'string', 'max:225'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:drivers'],
+                'dateOfBirth' => ['required', 'date'],
+                'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
+                'dateEmployed' => ['required', 'date'],
+                'hometown' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+    
+    
+            if($validator->fails()) {
+                return redirect()->back()->with(['faildriver' => 'The driver was not created! Click "Create Driver" for more information.'])->withInput()->withErrors($validator);
+            }
+    
+            //calls the Dirver model to create a new driver field in the table.
+            $driver = Driver::create([
+                'firstName' => $request['firstName'],
+                'lastName' => $request['lastName'],
+                'email' => $request['email'],
+                'dateOfBirth' => $request['dateOfBirth'],
+                'contactNumber' => $request['contactNumber'],
+                'dateEmployed' => $request['dateEmployed'],
+                'hometown' => $request['hometown'],
+                'password' => Hash::make($request['password']),
+            ]);
+            //calls the driverlicense model to create an new field that can be added to the diverlicenses table.
+            $driverlicense = Driverlicense::create([
+                'driverID' => DB::table('drivers')->where('email', $request['email'])->value('driverID'),
+                'licenseCode' => $request['licenseCode'],
+            ]);
+    
+            return redirect()->back()->with(['successdriver' => 'The driver was created successfully!']);
+        }
 }

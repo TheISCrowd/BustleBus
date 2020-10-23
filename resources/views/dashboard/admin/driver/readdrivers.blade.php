@@ -1,9 +1,3 @@
-@if(session()->has('successdriver'))
-<div class="alert alert-success">
-    {{ session()->get('successdriver') }}
-</div>
-@endif
-
 <div class="table-responsive">
     <table class="table">
         <caption>List of Drivers</caption>

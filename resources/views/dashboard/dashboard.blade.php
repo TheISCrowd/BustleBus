@@ -78,6 +78,7 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
+                        @include('dashboard.errors')
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readadmins', ['admins' => $admins])</div>
                         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>

@@ -82,7 +82,7 @@ class BookingController extends Controller
         // error check - parental supervision and zero passengers
         if ($numberOfPassengers == 0) {
             return redirect()->route('booking.step.two.create')->withInput()->withErrors(['zero' => 'Zero passengers have been selected for the trip.']);
-        } else if (($request['adult'] == 0 && $request['elderly'] == 0) && ($request['infant'] == 0 || $request['children'] == 0)) {
+        } else if (($request['adults'] == 0 && $request['elderly'] == 0)) {
             return redirect()->route('booking.step.two.create')->withInput()->withErrors(['parental' => 'If infant and children are passengers selected there must be an adult or elderly passenger for parental supervision.']);
         }
 
@@ -143,10 +143,5 @@ class BookingController extends Controller
         $daytrips = $request->session()->get('daytrips');
 
         return view('client.booking.step-five', ['booking' => $booking, 'daytrips' => $daytrips]);
-    }
-
-    public function postStepFive() 
-    {
-        return redirect()->route('booking.summary.create');
     }
 }

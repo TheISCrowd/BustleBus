@@ -1,11 +1,4 @@
-<!-- admin created successfully -->
-@if(session()->has('successadmin'))
-<div class="alert alert-success">
-    {{ session()->get('successadmin') }}
-</div>
-@endif
-
-<div class="table-responsive" style="height: 200px; overflow:scroll;">
+<div class="table-responsive">
     <table class="table">
         <caption>List of Admin Accounts</caption>
         <tr>
