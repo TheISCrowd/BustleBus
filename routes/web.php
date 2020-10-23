@@ -58,6 +58,7 @@ Route::post('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::cl
 Route::get('/admin',[App\Http\Controllers\DashboardController::class, 'generateAdminDashboard'])->middleware('auth:admin');
 // create driver get/post routes
 Route::post('/admin/new-driver', [App\Http\Controllers\Auth\RegisterController::class, 'createDriver'])->name('new.driver.post');
+Route::post('/admin/updatedriver', [App\Http\Controllers\DashboardController::class, 'updateDriver'])->name('update.driver.post');
 //created-driver view
 Route::view('/admin/driver', 'driver.created-driver')->middleware('auth:admin');
 
