@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
@@ -14,76 +14,79 @@
                     </div>
                     @endif
 
-                    <!-- $user variable is passed with login view to determine which user is logged in -->
 
+                    <!-- client dashboard start ------------------------------------------------------------- -->
                     @if(Auth::guard('web')->check())
 
                     {{ __('Client logged in!') }}
 
                     @endif
+                    <!-- client dashboard end ---------------------------------------------------------- -->
 
 
+
+
+                    <!-- admin dashboard start -------------------------------------------------------- -->
                     @if(Auth::guard('admin')->check())
-
-                    {{ __('Admin logged in!') }}
-                    <div class="container">
-                    @include('dashboard.admin.readbookings', ['bookings' => $bookings])
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseBookings" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Create Booking
-                        </a>
-
-                        <div class="collapse" id="collapseBookings">
-                            <div class="card card-body">
-                                
-                            </div>
-                        </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bookings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Drivers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readbookings', ['bookings' => $bookings])</div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                     </div>
 
+
+                    <!-- Bookings container -->
                     <div class="container">
-                    @include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseDriver" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Create Driver
-                        </a>
-                        <div class="collapse" id="collapseDriver">
-                            <div class="card card-body">
-                            @include('dashboard.admin.driver.new-driver')
-                            </div>
-                        </div>
+                        <!-- Bookings table -->
+                        
                     </div>
-                    
+
+                    <!--drivers container -->
+                    <div class="container">
+                        <!-- drivers table -->
+                        
+                    </div>
+
                     @endif
+                    <!-- admin dashboard end---------------------------------------------------------- -->
 
-                    <!-- human resources so $user == 'hr' -->
+
+
+
+                    <!-- human resources dashboard start ------------------------------------------------------------>
                     @if(Auth::guard('hr')->check())
-
-                    {{ __('Human Resources logged in!') }}
-
-
-                    <div class="container">
-                        @include('dashboard.admin.readadmins', ['admins' => $admins])
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseAdmin" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Create Admin
-                        </a>
-
-                        <div class="collapse" id="collapseAdmin">
-                            <div class="card card-body">
-                                @include('auth.registerbland', ['url' => 'admin'])
-                            </div>
-                        </div>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Admins</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Drivers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readadmins', ['admins' => $admins])</div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                     </div>
 
-                    <div class="container">
-                        @include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseDriver" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Create Driver
-                        </a>
-                        <div class="collapse" id="collapseDriver">
-                            <div class="card card-body">
-                                @include('dashboard.admin.driver.new-driver')
-                            </div>
-                        </div>
-                    </div>
+
                     @endif
+                    <!-- human resources dashboard end ------------------------------------------------------------>
+
                 </div>
             </div>
         </div>

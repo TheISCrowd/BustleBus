@@ -104,7 +104,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['successadmin' => 'The admin was created successfully!']);
     }
 
     protected function createHr(Request $request)

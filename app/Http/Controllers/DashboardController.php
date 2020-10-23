@@ -44,7 +44,7 @@ class DashboardController extends Controller
             'licenseCode' => $request['licenseCode'],
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['successdriver' => 'The driver was created successfully!']);
     }
 
 
