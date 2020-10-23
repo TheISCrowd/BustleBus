@@ -104,7 +104,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->intended('admin');
+        return redirect()->back();
     }
 
     protected function createHr(Request $request)
@@ -121,6 +121,6 @@ class RegisterController extends Controller
             'password' => Hash::make($request['password']),
         ]);
 
-        return redirect()->intended('hr');
+        return redirect()->back();
     }
 }
