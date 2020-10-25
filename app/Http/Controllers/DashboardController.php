@@ -88,7 +88,7 @@ class DashboardController extends Controller
             'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'dateEmployed'=> ['required','date'],
             'hometown' => ['required','string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         if ($validator->fails()) {
@@ -104,7 +104,7 @@ class DashboardController extends Controller
             'contactNumber' => $request['contactNumber'],
             'dateEmployed' => $request['dateEmployed'],
             'hometown' => $request['hometown'],
-            'password' => Hash::make($request['password']),
+            
         ]); 
         //calls the driverlicense model to create an new field that can be added to the diverlicenses table.
         $driverlicense = Driverlicense::where('driverID',$request['driverID'])->update(['licenseCode'=>$request['licenseCode']]);
@@ -116,7 +116,7 @@ class DashboardController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
 
         if ($validator->fails()) {
@@ -126,7 +126,7 @@ class DashboardController extends Controller
         $admin = Admin::where('adminID',$request['adminID'])->update([
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+            
         ]);
 
         
@@ -140,7 +140,7 @@ class DashboardController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'cell' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            
         ]);
 
         if ($validator->fails()) {
@@ -152,13 +152,32 @@ class DashboardController extends Controller
             'surname' =>$request['surname'],
             'cell'=> $request['cell'],
             'email' => $request['email'],
-            'password' => Hash::make($request['password']),
+            
         ]);
-        redirect()->back()->with(['updatesuccess' => 'The update was successful!']);
+        return redirect()->back()->with(['updatesuccess' => 'The update was successful!']);
     }
 
     public function getAllClients()
     {
         return User::all();
+    }
+
+    public function deleteClient(Request $request)
+    {
+        $deletedRows = User::where('id',$request['clientID'])->delete();
+        return redirect()->back()->with(['updatesuccess' => 'The deletion was successful!']);
+    }
+
+    public function deleteDriver(Request $request)
+    {
+        $deletedRows = Driverlicense::where('driverID',$request['driverID'])->delete();
+        $deletedRows = Driver::where('driverID',$request['driverID'])->delete();
+        return redirect()->back()->with(['deletesuccess' => 'The deletion was successful!']);
+    }
+
+    public function deleteAdmin(Request $request)
+    {
+        $deletedRows = Admin::where('adminID',$request['adminID'])->delete();
+        return redirect()->back()->with(['deletesuccess' => 'The deletion was successful!']);
     }
 }
