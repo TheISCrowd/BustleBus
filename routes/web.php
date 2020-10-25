@@ -45,7 +45,7 @@ Route::get('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::
 Route::get('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'showHrRegisterForm'])->middleware('auth:hr');
 Route::post('/hr/register-admin', [App\Http\Controllers\Auth\RegisterController::class, 'createAdmin'])->middleware('auth:hr');
 Route::post('/hr/register-hr', [App\Http\Controllers\Auth\RegisterController::class, 'createHr'])->middleware('auth:hr');
-
+Route::post('/hr/updated-admin', [App\Http\Controllers\DashboardController::class, 'updateAdmin'])->name('update.admin.post');
 
 /* ------------ All HUMAN RESOURCES views/routes END here ------------  */
 
@@ -59,6 +59,7 @@ Route::get('/admin',[App\Http\Controllers\DashboardController::class, 'generateA
 // create driver get/post routes
 Route::post('/admin/new-driver', [App\Http\Controllers\Auth\RegisterController::class, 'createDriver'])->name('new.driver.post');
 Route::post('/admin/updatedriver', [App\Http\Controllers\DashboardController::class, 'updateDriver'])->name('update.driver.post');
+Route::post('/admin/updateclient', [App\Http\Controllers\DashboardController::class, 'updateClient'])->name('update.client.post');
 //created-driver view
 Route::view('/admin/driver', 'driver.created-driver')->middleware('auth:admin');
 

@@ -19,7 +19,14 @@
                     @if(Auth::guard('web')->check())
 
                     {{ __('Client logged in!') }}
-
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bookings</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readbookings', ['bookings' => $bookings])</div>
+                    </div>
                     @endif
                     <!-- client dashboard end ---------------------------------------------------------- -->
 
@@ -30,19 +37,19 @@
                     @if(Auth::guard('admin')->check())
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bookings</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#bookings" role="tab" aria-controls="home" aria-selected="true">Bookings</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Drivers</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#drivers" role="tab" aria-controls="profile" aria-selected="false">Drivers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                            <a class="nav-link" id="client-tab" data-toggle="tab" href="#clients" role="tab" aria-controls="client" aria-selected="false">Clients</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readbookings', ['bookings' => $bookings])</div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
-                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                        <div class="tab-pane fade show active" id="bookings" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readbookings', ['bookings' => $bookings])</div>
+                        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
+                        <div class="tab-pane fade" id="clients" role="tabpanel" aria-labelledby="contact-tab">@include('dashboard.client.readclients', ['clients' => $clients])</div>
                     </div>
 
 
@@ -68,10 +75,10 @@
                     @if(Auth::guard('hr')->check())
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Admins</a>
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#admins" role="tab" aria-controls="home" aria-selected="true">Admins</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Drivers</a>
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#drivers" role="tab" aria-controls="profile" aria-selected="false">Drivers</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
@@ -79,8 +86,8 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         @include('dashboard.errors')
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readadmins', ['admins' => $admins])</div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
+                        <div class="tab-pane fade show active" id="admins" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readadmins', ['admins' => $admins])</div>
+                        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
                     </div>
 

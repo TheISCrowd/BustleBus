@@ -1,3 +1,5 @@
+@include('dashboard.errors')
+
 <div class="table-responsive">
     <table class="table">
         <caption>List of Drivers</caption>
@@ -12,6 +14,7 @@
             <th><strong>Home Town<strong></th>
         </tr>
         @foreach ($drivers as $driver)
+        
         <tr>
             <td>{{$driver->driverID}}</td>
             <td>{{$driver->firstName}}</td>
@@ -21,10 +24,34 @@
             <td>{{$driver->contactNumber}}</td>
             <td>{{$driver->dateEmployed}}</td>
             <td>{{$driver->hometown}}</td>
+            <td><button type="button" class="btn edit" data-toggle="modal" data-target="#updateDriver">Update</button></td>
+            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteDriver">Delete</button></td>
         </tr>
         @endforeach
     </table>
 </div>
+
+<script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+<script>
+     $(document).ready(function() {
+   let row = null
+   // $('.edit') is the same as document.getElementByClass('edit');
+   $('.edit').click(function() {
+     row = $(this).closest('tr');
+     // $('#id') is the same as document.getElementById('id');
+     // here we set the <inputs> value to the data in the table with the .val()
+     $('#updateDriverID').val(row.find('td:eq(0)').text())
+     $('#updateFirstName').val(row.find('td:eq(1)').text())
+     $('#updateLastName').val(row.find('td:eq(2)').text())
+     $('#updateEmail').val(row.find('td:eq(3)').text())
+     $('#updateDateOfBirth').val(row.find('td:eq(4)').text())
+     $('#updateContactNumber').val(row.find('td:eq(5)').text())
+     $('#updateDateEmployed').val(row.find('td:eq(6)').text())
+     $('#updateHometown').val(row.find('td:eq(7)').text())
+     $('#updateLicenseCode').val(row.find('td:eq(8)').text())
+   });
+ });
+</script>
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDriver">
@@ -32,3 +59,6 @@
 </button>
 
 @include('auth.registerdriver')
+
+
+@include('dashboard.admin.driver.updatedriver')
