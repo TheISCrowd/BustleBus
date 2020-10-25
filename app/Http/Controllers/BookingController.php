@@ -21,12 +21,12 @@ class BookingController extends Controller
             $request->session()->forget('daytrips');    
         }
 
-        return view('client.booking.start-booking');
+        return view('dashboard.client.booking_wizard.start');
     }
 
     public function createStepOne(Request $request)
     {
-        return view('client.booking.step-one');
+        return view('dashboard.client.booking_wizard.destinations');
     }
 
     public function postStepOne(Request $request)
@@ -63,7 +63,7 @@ class BookingController extends Controller
 
     public function createStepTwo(Request $request)
     {
-        return view('client.booking.step-two');
+        return view('dashboard.client.booking_wizard.passengers');
     }
 
     public function postStepTwo(Request $request)
@@ -101,7 +101,7 @@ class BookingController extends Controller
 
     public function createStepThree(Request $request) 
     {
-        return view('client.booking.step-three');
+        return view('dashboard.client.booking_wizard.luggage');
     }
 
     public function postStepThree(Request $request)
@@ -125,7 +125,7 @@ class BookingController extends Controller
         $trailer = $booking['trailer'];
         $disabled = $booking['disabled'];
 
-        return view('client.booking.step-four', ['numPassengers' => $numberOfPassengers, 'extra' => $extraLuggage, 'trailer' => $trailer, 'disabled' => $disabled]);
+        return view('dashboard.client.booking_wizard.vehciles', ['numPassengers' => $numberOfPassengers, 'extra' => $extraLuggage, 'trailer' => $trailer, 'disabled' => $disabled]);
     }
 
     public function postStepFour(Request $request) {
@@ -142,6 +142,6 @@ class BookingController extends Controller
         $booking = $request->session()->get('booking');
         $daytrips = $request->session()->get('daytrips');
 
-        return view('client.booking.step-five', ['booking' => $booking, 'daytrips' => $daytrips]);
+        return view('dashboard.client.booking_wizard.confirmation', ['booking' => $booking, 'daytrips' => $daytrips]);
     }
 }
