@@ -26,8 +26,9 @@ class CreateBookingsTable extends Migration
             $table->string('roofracks')->nullable();
             $table->string('trailer')->nullable();
             $table->string('extra')->nullable();
-            $table->string('vehicleType')->nullable();
+            $table->string('vehicleType')->default('No');
             $table->string('initalCollectionPoint')->nullable();
+            $table->string('complete')->nullable();
             $table->foreignID('clientID')->nullable();
             $table->foreign('clientID')->references('id')->on('users')->nullable();
             $table->foreignID('driverID')->nullable();

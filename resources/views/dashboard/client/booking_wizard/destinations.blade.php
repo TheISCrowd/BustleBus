@@ -6,19 +6,15 @@
 <div class="container">
     <!-- Step buttons to navigate wizzard -->
     <div class="row justify-content-center">
-        <div class="col-md-auto">
-            <a href="{{ URL::route('booking.step.one.create') }}" class="btn btn-default"> Locations step one </a>
-            <a href="#" class="btn btn-default"> Passengers step two </a>
-            <a href="#" class="btn btn-default"> Luggage step three </a>
-            <a href="#" class="btn btn-default"> Vehciles step four </a>
+        <div class="col">
+            <a href="{{ URL::route('booking.step.one.create') }}" class="btn" style="background: #F8E78F;"> Locations  </a>
         </div>
     </div>
 
-    <div class="row ">
-        <div class="col-md-5 ">
-            <div class="card">
+    <div class="row">
+        <div class="col-md-5" style="background-color: #F8F8F8;" >
 
-                <div class="col justify-content-center">
+                <div class="col justify-content-center" style="padding-top:0.5em">
                     <h3 class="tk-gill-sans-nova">Plan Your Trip</h3>
                 </div>
 
@@ -64,9 +60,8 @@
                     </div>
 
                     <!-- button to post form -->
-                    <input type="submit" name="send" value="Next" class="btn btn-dark btn-block">
+                    <input type="submit" name="send" value="Next" class="btn btn-dark btn-block tk-gill-sans-nova">
                 </form>
-            </div>
         </div>
     </div>
 </div>

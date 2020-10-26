@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 /* ------------ All PUBLIC views/routes START here ------------  */
 
 //public page views
-Route::get('/', function () {return view('home');});
+Route::get('/', function () {return redirect('http://localhost:8080/login');});
 Route::view('/contactus', 'contactus');
 Route::view('/aboutus', 'aboutus');
 Route::view('/faq', 'contactus');
@@ -58,9 +58,11 @@ Route::post('/hr/deleted-admin', [App\Http\Controllers\DashboardController::clas
 // admin homepage
 Route::get('/admin',[App\Http\Controllers\DashboardController::class, 'generateAdminDashboard'])->middleware('auth:admin');
 // create driver get/post routes
+Route::post('/assigndriver', [App\Http\Controllers\Auth\RegisterController::class, 'assignDriver'])->name('assign.driver');
 Route::post('/new-driver', [App\Http\Controllers\Auth\RegisterController::class, 'createDriver'])->name('new.driver.post');
 Route::post('/update-driver', [App\Http\Controllers\DashboardController::class, 'updateDriver'])->name('update.driver.post');
 Route::post('/delete-driver',[App\Http\Controllers\DashboardController::class, 'deleteDriver'])->name('delete.driver.post');
+Route::post('/delete-booking',[App\Http\Controllers\DashboardController::class, 'deleteBooking'])->name('delete.booking.post');
 Route::post('/admin/updateclient', [App\Http\Controllers\DashboardController::class, 'updateClient'])->name('update.client.post');
 Route::post('/admin/deleteclient', [App\Http\Controllers\DashboardController::class, 'deleteClient'])->name('delete.client.post');
 //created-driver view

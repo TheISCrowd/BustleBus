@@ -6,61 +6,52 @@
 <div class="container">
     <!-- Step buttons to navigate wizzard -->
     <div class="row justify-content-center">
-        <a href="{{ URL::route('booking.step.one.create') }}" class="btn btn-default"> Locations step one </a>
-        <a href="{{ URL::route('booking.step.two.create') }}" class="btn btn-default"> Passengers step two </a>
-        <a href="{{ URL::route('booking.step.three.create') }}" class="btn btn-default"> Luggage step three </a>
-        <a href="{{ URL::route('booking.step.four.create') }}" class="btn btn-default"> Vehciles step four </a>
+        <div class="col">
+            <a href="{{ URL::route('booking.step.one.create') }}" class="btn" style="background: #F8E78F;"> Locations </a>
+            <a href="{{ URL::route('booking.step.two.create') }}" class="btn" style="background: #F8E78F;"> Passengers </a>
+            <a href="{{ URL::route('booking.step.three.create') }}" class="btn" style="background: #F8E78F;"> Luggage </a>
+            <a href="{{ URL::route('booking.step.four.create') }}" class="btn" style="background: #F8E78F;"> Vehcile </a>
+        </div>
     </div>
 
-    <form method="POST" action="{{ route('booking.step.four.post') }}">
-        @csrf
-        <div class="row justify-content-center">
-            <div class="col-md-5">
-                <div class="card">
-                    <h5>The following vehciles meet your required specifications:</h5>
-                    <!-- displays the number of passengers requested -->
-                    <p>Number of passengers: {{ $numPassengers }}</p>
+    <div class="row">
+        <div class="col-md-5" style="background-color: #F8F8F8;">
+            <h3 class="tk-gill-sans-nova">Select Your Vehicle</h3>
+            <form method="POST" action="{{ route('booking.step.four.post') }}">
+                @csrf
+                <div class="row justify-content-center">
 
-                    <!-- displays if trailer requested -->
-                    @if($trailer == true)
-                    <p>A trailer has been requested</p>
-                    @endif
 
-                    <!-- displays if extra luggage requested -->
-                    @if($extra == true)
-                    <p>Space for extra luggage has been requested</p>
-                    @endif
 
-                    <!-- displays if a person is disabled -->
-                    @if($disabled == true)
-                    <p>A vehcile to accomdate a disabled person/s has been requested</p>
-                    @endif
-                 
-                    <label>Sedan</label>
                     <!-- a sedan can take 4 passengers, no trailer/disabled person/extraluggage -->
                     @if($numPassengers > 4 || $trailer == true || $disabled == true || $extra == true)
-                    <p>This type of vehicle cannot meet your required specifications</p>
                     @else
-                    <input type="radio" class="form-control" name="vehicleType" value="Sedan">
+                    <label class="tk-gill-sans-nova">Sedan</label>
+                    <input type="radio" class="form-control form-control-sm" name="vehicleType" value="Sedan">
                     @endif
 
-                    <label>Suv</label>
+
                     <!-- a suv can take 6 passengers and a trailer/disabled person/extra luggage -->
                     @if($numPassengers > 6)
-                    <p>This type of vehicle cannot meet your required specifications</p>
+
                     @else
-                    <input type="radio" class="form-control" name="vehicleType" value="Suv">
+                    <label class="tk-gill-sans-nova">Suv</label>
+                    <input type="radio" class="form-control form-control-sm" name="vehicleType" value="Suv">
                     @endif
 
                     <!-- a van meets all of the required specifications so no if statements -->
-                    <label>Van</label>
-                    <input type="radio" class="form-control" name="vehicleType" value="Van">
+                    <label class="tk-gill-sans-nova">Van</label>
+                    <input type="radio" class="form-control form-control-sm" name="vehicleType" value="Van">
 
+
+                    <!-- button for form post -->
+
+                    <input type="submit" name="send" value="Next" style="padding-top: 0.5em" class="btn btn-dark btn-block tk-gill-sans-nova">
                 </div>
-                <!-- button for form post -->
-                <input type="submit" name="send" value="Next" class="btn btn-dark btn-block">
-            </div>
+
+            </form>
         </div>
-    </form>
+    </div>
+
 </div>
 @endsection

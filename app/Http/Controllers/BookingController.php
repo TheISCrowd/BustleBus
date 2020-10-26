@@ -136,6 +136,7 @@ class BookingController extends Controller
     public function postStepFour(Request $request) {
         // fill booking session variable with the vehicle type
         $booking = $request->session()->get('booking');
+        $booking->fill(['clientID' => Auth::User()->id]);
         $booking->fill(['vehicleType' => $request['vehicleType']]);
         $request->session()->put('booking', $booking);
 
@@ -157,4 +158,6 @@ class BookingController extends Controller
 
         return view('dashboard.dashboard');
     }
+
+
 }

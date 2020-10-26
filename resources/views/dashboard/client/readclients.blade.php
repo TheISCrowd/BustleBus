@@ -1,5 +1,3 @@
-@include('dashboard.errors')
-
 <div class="table-responsive">
     <table class="table">
         <caption>List of clients</caption>
@@ -18,8 +16,8 @@
             <td>{{$client->cell}}</td>
             <td>{{$client->email}}</td>
             <td>{{$client->contactNumber}}</td>
-            <td><Button type = "button" class="btn edit" data-toggle="modal" data-target="#updateClient">Update</button></td>
-            <td><button type = "button" class="btn delete" data-toggle="modal" data-target="#deleteClient">Delete</button></td>
+            <td><Button type = "button" class="btn btn-warning edit" data-toggle="modal" data-target="#updateClient">Update</button></td>
+            <td><button type = "button" class="btn btn-danger delete" data-toggle="modal" data-target="#deleteClient">Delete</button></td>
         </tr>
         @endforeach
     </table>
@@ -53,7 +51,7 @@
  });
 </script>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addClient">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addClient">
     Create Client
 </button>
 

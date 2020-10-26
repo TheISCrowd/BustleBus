@@ -1,5 +1,3 @@
-@include('dashboard.errors')
-
 <div class="table-responsive">
     <table class="table">
         <caption>List of Drivers</caption>
@@ -24,8 +22,8 @@
             <td>{{$driver->contactNumber}}</td>
             <td>{{$driver->dateEmployed}}</td>
             <td>{{$driver->hometown}}</td>
-            <td><button type="button" class="btn edit" data-toggle="modal" data-target="#updateDriver">Update</button></td>
-            <td><button type="button" class="btn delete" data-toggle="modal" data-target="#deleteDriver">Delete</button></td>
+            <td><button type="button" class="btn btn-warning edit" data-toggle="modal" data-target="#updateDriver">Update</button></td>
+            <td><button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#deleteDriver">Delete</button></td>
         </tr>
         @endforeach
     </table>
@@ -48,7 +46,6 @@
      $('#updateContactNumber').val(row.find('td:eq(5)').text())
      $('#updateDateEmployed').val(row.find('td:eq(6)').text())
      $('#updateHometown').val(row.find('td:eq(7)').text())
-     $('#updateLicenseCode').val(row.find('td:eq(8)').text())
    });
 
    $('.delete').click(function() {
@@ -63,7 +60,7 @@
 </script>
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDriver">
+<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addDriver">
     Create Driver
 </button>
 

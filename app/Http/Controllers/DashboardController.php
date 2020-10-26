@@ -48,16 +48,20 @@ class DashboardController extends Controller
     public function createNewDriver(Request $request)
     {
         //Validator for all data from the input form. *field name* => [Specifictations]
-        $this->validate($request,  [
+        $validator = Validator::make($request->all(),  [
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:225'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:drivers'],
             'dateOfBirth' => ['required', 'date'],
             'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'dateEmployed' => ['required', 'date'],
             'hometown' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with(['successdriver' => 'The Driver was not created! Click "Create Driver" for more information.'])->withInput()->withErrors($validator);
+        }
 
         //calls the Dirver model to create a new driver field in the table.
         $driver = Driver::create([
@@ -76,14 +80,14 @@ class DashboardController extends Controller
             'licenseCode' => $request['licenseCode'],
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with(['successdriver' => 'The driver was added!']);
     }
     
     public function updateDriver(Request $request){
         $validator = Validator::make($request->all(),  [
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:225'],
-            'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:drivers'],
             'dateOfBirth'=>['required','date'],
             'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'dateEmployed'=> ['required','date'],
@@ -139,7 +143,7 @@ class DashboardController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'cell' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             
         ]);
 
@@ -179,5 +183,17 @@ class DashboardController extends Controller
     {
         $deletedRows = Admin::where('adminID',$request['adminID'])->delete();
         return redirect()->back()->with(['deletesuccess' => 'The deletion was successful!']);
+    }
+
+    public function deleteBooking(Request $request)
+    {
+        Booking::where('bookingID',$request['bookingID'])->update(['complete' => 'Yes']);
+        return view('dashboard.dashboard')->with(['bookingsuccess' => 'The booking is complete!']);
+    }
+
+    public function assignDriver(Request $request)
+    {
+
+        return view('dashboard.dashboard')->with(['assignsuccess' => 'The driver is assigned!']);
     }
 }
