@@ -17,16 +17,28 @@
 
                     <!-- client dashboard start ------------------------------------------------------------- -->
                     @if(Auth::guard('web')->check())
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto">
+                                <h2 class="tk-carlmarx im-centered">We'll Take You On A Trip</h2>
+                            </div>
 
-                    {{ __('Client logged in!') }}
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bookings</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readbookings', ['bookings' => $bookings])</div>
+
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto">
+                                <div class="tk-carlmarx" id="title"><strong>MAKE A BOOKING</strong></div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-auto">
+                                <a href="{{ URL::route('booking.step.one.create') }}" class="btn btn-lg btn-default">
+                                    <h3 class="tk-gill-sans-nova">START</h3>
+                                </a>
+                            </div>
+                        </div>
                     </div>
+
                     @endif
                     <!-- client dashboard end ---------------------------------------------------------- -->
 
@@ -56,13 +68,13 @@
                     <!-- Bookings container -->
                     <div class="container">
                         <!-- Bookings table -->
-                        
+
                     </div>
 
                     <!--drivers container -->
                     <div class="container">
                         <!-- drivers table -->
-                        
+
                     </div>
 
                     @endif
