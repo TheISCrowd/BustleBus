@@ -11,6 +11,19 @@
                 <form method="POST" action="{{ route('update.client.post') }}" >
                     @csrf
                     <div class="form-group row">
+                        <label for="updateClientID" class="col-md-4 col-form-label text-md-right">{{ __('Client ID') }}</label>
+
+                        <div class="col-md-6">
+                            <input id="updateClientID" type="text" class="form-control @error('clientID') is-invalid @enderror" name="clientID" value="{{ old('clientID') }}" placeholder="(1)" required autofocus>
+
+                            @error('clientID')
+                            <span class="invalid-feedback" role=alert>
+                                <strong>{{ $errors->first('clientID') }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="updateClientName" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                         <div class="col-md-6">

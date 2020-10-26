@@ -12,42 +12,42 @@
 
                     @csrf
                     <div class="form-group row">
-                        <label for="deleteDriverID" class="col-md-4 col-form-label text-md-right">{{ __('Driver ID') }}</label>
+                        <label for="deleteClientID" class="col-md-4 col-form-label text-md-right">{{ __('Client ID') }}</label>
 
                         <div class="col-md-6">
-                            <input id="deleteDriverID" type="text" class="form-control @error('driverID') is-invalid @enderror" name="driverID" value="{{ old('driverID') }}" placeholder="(1)" required autofocus>
+                            <input id="deleteClientID" type="text" class="form-control @error('clientID') is-invalid @enderror" name="clientID" value="{{ old('clientID') }}" placeholder="(1)" required autofocus>
 
-                            @error('driverID')
+                            @error('clientID')
                             <span class="invalid-feedback" role=alert>
-                                <strong>{{ $errors->first('driverID') }}</strong>
+                                <strong>{{ $errors->first('clientID') }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="deleteFirstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                        <label for="deleteName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="deleteFirstName" type="text" class="form-control @error('fistName') is-invalid @enderror" name="firstName" value="{{ old('fistName') }}" placeholder="(John)" required autofocus>
+                            <input id="deleteName" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="(John)" required autofocus>
 
-                            @error('firstName')
+                            @error('name')
                             <span class="invalid-feedback" role=alert>
-                                <strong>{{ $errors->first('firstName') }}</strong>
+                                <strong>{{ $errors->first('name') }}</strong>
                             </span>
                             @enderror
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label for="deleteLastName" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                        <label for="deleteClientSurname" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="deleteLastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" placeholder="(Doe)" required autofocus>
+                            <input id="deleteClientSurname" type="text" class="form-control @error('lastName') is-invalid @enderror" name="surname" value="{{ old('surname') }}" placeholder="(Doe)" required autofocus>
 
-                            @error('lastName')
+                            @error('surname')
                             <span class="invalid-feedback" role=alert>
-                                <strong>{{ $errors->first('lastName') }}</strong>
+                                <strong>{{ $errors->first('surname') }}</strong>
                             </span>
                             @enderror
                         </div>

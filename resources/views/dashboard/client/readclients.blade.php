@@ -18,8 +18,8 @@
             <td>{{$client->cell}}</td>
             <td>{{$client->email}}</td>
             <td>{{$client->contactNumber}}</td>
-            <td><Button class="btn edit" data-toggle="modal" data-target="#updateClient">Update</button></td>
-            <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteClient">Delete</button></td>
+            <td><Button type = "button" class="btn edit" data-toggle="modal" data-target="#updateClient">Update</button></td>
+            <td><button type = "button" class="btn delete" data-toggle="modal" data-target="#deleteClient">Delete</button></td>
         </tr>
         @endforeach
     </table>
@@ -40,6 +40,16 @@
      $('#updateClientCell').val(row.find('td:eq(3)').text())
      $('#updateClientEmail').val(row.find('td:eq(4)').text())
    });
+
+   $('.delete').click(function() {
+     row = $(this).closest('tr');
+     // $('#id') is the same as document.getElementById('id');
+     // here we set the <inputs> value to the data in the table with the .val()
+     $('#deleteClientID').val(row.find('td:eq(0)').text())
+     $('#deleteName').val(row.find('td:eq(1)').text())
+     $('#deleteClientSurname').val(row.find('td:eq(2)').text())
+     
+   });
  });
 </script>
 <!-- Button trigger modal -->
@@ -53,6 +63,8 @@
 
 
 @include('dashboard.client.updateclient')
+
+@include('dashboard.client.deleteclient')
 
 
 

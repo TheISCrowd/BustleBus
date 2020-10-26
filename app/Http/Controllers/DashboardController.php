@@ -146,7 +146,7 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->with(['updatefail' => 'The update failed! Click "Update" for more information.'])->withInput()->withErrors($validator);
         }
-
+        echo "heelo";
         $admin = User::where('id',$request['clientID'])->update([
             'name' => $request['name'],
             'surname' =>$request['surname'],
