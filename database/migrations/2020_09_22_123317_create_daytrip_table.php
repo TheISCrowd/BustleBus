@@ -15,12 +15,9 @@ class CreateDaytripTable extends Migration
     {
         Schema::create('daytrips', function (Blueprint $table) {
             $table->id('tripNumber');
-            $table->foreignId('bookingID');
-            $table->foreign('bookingID')->references('bookingID')->on('bookings');
-            $table->string('destinationsName');
-            $table->string('latLong');
-            $table->date('date');
-            $table->boolean('bedRequest')->nullable();
+            $table->foreignId('bookingID')->nullable();
+            $table->foreign('bookingID')->references('bookingID')->on('bookings')->nullable();
+            $table->string('destinationsName')->nullable();
         });
     }
 
