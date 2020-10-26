@@ -15,22 +15,21 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id('bookingID');
-            $table->date('startDate');
-            $table->date('endDate');
-            $table->integer('infants');
-            $table->integer('children');
-            $table->integer('adults');
-            $table->integer('elderly');
-            $table->boolean('disabled');
-            $table->boolean('babychair');
-            $table->boolean('roofrack');
-            $table->boolean('trailer');
-            $table->boolean('extra');
-            $table->string('vehicleType');
-            $table->string('initalCollectionPoint');
-            $table->string('latLong');
-            $table->foreignID('clientID');
-            $table->foreign('clientID')->references('id')->on('users');
+            $table->date('startDate')->nullable();
+            $table->date('time')->nullable();
+            $table->integer('infants')->nullable();
+            $table->integer('children')->nullable();
+            $table->integer('adults')->nullable();
+            $table->integer('elderly')->nullable();
+            $table->string('disabled')->nullable();
+            $table->string('babychair')->nullable();
+            $table->string('roofracks')->nullable();
+            $table->string('trailer')->nullable();
+            $table->string('extra')->nullable();
+            $table->string('vehicleType')->nullable();
+            $table->string('initalCollectionPoint')->nullable();
+            $table->foreignID('clientID')->nullable();
+            $table->foreign('clientID')->references('id')->on('users')->nullable();
             $table->foreignID('driverID')->nullable();
             $table->foreign('driverID')->references('driverID')->on('drivers')->nullable();
         });

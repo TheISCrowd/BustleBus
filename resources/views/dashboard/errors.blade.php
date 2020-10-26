@@ -1,5 +1,7 @@
 <!-- admin created successfully -->
 
+
+
 @if(session()->has('successadmin'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{ session()->get('successadmin') }}</strong>

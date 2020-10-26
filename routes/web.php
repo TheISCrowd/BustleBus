@@ -87,6 +87,6 @@ Route::get('/booking/vehciles', [App\Http\Controllers\BookingController::class, 
 Route::post('/booking/vehicles', [App\Http\Controllers\BookingController::class, 'postStepFour'])->middleware('auth')->name('booking.step.four.post');
     // step-five
 Route::get('/booking/confirmation', [App\Http\Controllers\BookingController::class, 'createStepFive'])->middleware('auth')->name('booking.step.five.create');
-Route::post('/booking/confirmation', [App\Http\Controllers\BookingController::class, 'postStepFive'])->middleware('auth')->name('booking.step.five.create');
+Route::post('/booking/confirmation', [App\Http\Controllers\BookingController::class, 'postStepFive'])->middleware('auth')->name('booking.step.five.post');
 
 /* ------------ All CLIENT views/routes END here ------------  */

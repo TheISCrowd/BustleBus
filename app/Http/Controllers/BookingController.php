@@ -6,57 +6,61 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Daytrip;
 use Illuminate\Support\Facades\Auth;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
     // Show the start-booking view
     public function startBooking(Request $request)
     {
-        // when starting a new booking weflush the session data for old data.
-        if (!empty($request->session()->get('booking'))) {
-            $request->session()->forget('booking');    
-        }
-        if (!empty($request->session()->get('daytrips'))) {
-            $request->session()->forget('daytrips');    
-        }
-
         return view('dashboard.client.booking_wizard.start');
+        
     }
 
     public function createStepOne(Request $request)
     {
+        $booking = new Booking();
+        $daytrip = new Daytrip();
+
+        $request->session()->put('booking', $booking);
+        $request->session()->put('daytrip', $daytrip);
+
         return view('dashboard.client.booking_wizard.destinations');
     }
 
     public function postStepOne(Request $request)
     {
         // booking startdate and location validation
-        $validatedBooking = $request->validate([
+        $validatedBooking = Validator::make($request->all(), [
             'startDate' => 'required|date|after:today',
             'initalCollectionPoint' => 'required|string',
-            //'endDate' => 'require|date|after:startDate + i day'
-        ]);
+        ]);   
 
-        // does a booking session variable already exist?
-        if (empty($request->session()->get('booking'))) {
-            $booking = new Booking();   // no
-        } else {
-            $booking = $request()->session()->get('booking'); // yes
+        if ($validatedBooking->fails()) {
+            return redirect()->back()->withInput()->withErrors($validatedBooking);
         }
 
-        // fill booking with validated data and save to session data
-        $booking->fill($validatedBooking);
+        $validatedDaytrip  = Validator::make($request->all(), [
+            'destinationsName' => 'required|string'
+        ]); 
+
+        if ($validatedDaytrip->fails()) {
+            return redirect()->back()->withInput()->withErrors($validatedDaytrip);
+        }
+
+        $booking = $request->session()->get('booking');
+        $booking->fill([
+            'startDate' => $request['startDate'],
+            'initalCollectionPoint' => $request['initalCollectionPoint']
+            ]);
+
+        $daytrip = $request->session()->get('daytrip');
+        $daytrip->fill([
+            'destinationsName' => $request['destinationsName']
+            ]);
+
         $request->session()->put('booking', $booking);
-
-        // create daytrip session variables for each overnight stay
-        $daytrips = [];
-        foreach ($request->input('destinationsName') as $key => $value) {
-            $daytrip = new Daytrip();
-            $daytrip->fill(['destinationsName' => $value]);
-            array_push($daytrips, $daytrip);
-        }
-        $request->session()->put('daytrips', $daytrips);
+        $request->session()->put('daytrip', $daytrip);
 
         return redirect()->route('booking.step.two.create');
     }
@@ -86,6 +90,7 @@ class BookingController extends Controller
             return redirect()->route('booking.step.two.create')->withInput()->withErrors(['parental' => 'If infant and children are passengers selected there must be an adult or elderly passenger for parental supervision.']);
         }
 
+
         // populate session booking data with input fields
         $booking = $request->session()->get('booking');
         $booking->fill(['infants' => $request['infants'],
@@ -93,7 +98,7 @@ class BookingController extends Controller
                         'adults' => $request['adults'], 
                         'elderly' => $request['elderly'],
                         'disabled' => $request['disabled'],
-                        'babychair' => $request['babychair'],]);
+                        'babychair' => ($request['infants'] )]);
         $request->session()->put('booking', $booking);
 
         return redirect()->route('booking.step.three.create');
@@ -125,7 +130,7 @@ class BookingController extends Controller
         $trailer = $booking['trailer'];
         $disabled = $booking['disabled'];
 
-        return view('dashboard.client.booking_wizard.vehciles', ['numPassengers' => $numberOfPassengers, 'extra' => $extraLuggage, 'trailer' => $trailer, 'disabled' => $disabled]);
+        return view('dashboard.client.booking_wizard.vehicles', ['numPassengers' => $numberOfPassengers, 'extra' => $extraLuggage, 'trailer' => $trailer, 'disabled' => $disabled]);
     }
 
     public function postStepFour(Request $request) {
@@ -140,8 +145,16 @@ class BookingController extends Controller
     public function createStepFive(Request $request)
     {
         $booking = $request->session()->get('booking');
-        $daytrips = $request->session()->get('daytrips');
+        $daytrip = $request->session()->get('daytrip');
 
-        return view('dashboard.client.booking_wizard.confirmation', ['booking' => $booking, 'daytrips' => $daytrips]);
+        return view('dashboard.client.booking_wizard.confirmation', ['booking' => $booking, 'daytrip' => $daytrip]);
+    }
+
+    public function postStepFive(Request $request)
+    {
+        $request->session()->get('booking')->save();
+        $request->session()->get('daytrip')->save();   
+
+        return view('dashboard.client.booking_wizard.start');
     }
 }

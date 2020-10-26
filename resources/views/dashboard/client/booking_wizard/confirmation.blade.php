@@ -12,35 +12,19 @@
         <a href="{{ URL::route('booking.step.four.create') }}" class="btn btn-default"> Vehciles step four </a>
     </div>
 
-    <form method="POST" action="{{ route('booking.step.four.post') }}">
+    <form method="POST" action="{{ route('booking.step.five.post') }}">
         @csrf
-        <div class="row justify-content-center">
-            <div class="col-md-5">
+        <div class="row ">
+            <div class="col-md-6 ">
                 <!-- passed the the $booking object variable and $daytrips object array from the session data -->
                 <!-- basic summary -->
                 <div class="card">
-                    <h5>Basic summary</h5>
                     <span>Start Date: {{ $booking['startDate'] }}</span>
-                    <span>Overnight stays: {{ count($daytrips) }} nights</span>
-                    <span>Total passengers: {{ $booking['infants'] + $booking['children'] + $booking['adults'] + $booking['elderly'] }}</span>
                     <span>Initial Collection location: {{ $booking['initalCollectionPoint'] }}</span>
-                    <span>Final Destination: {{ end($daytrips)['destinationsName'] }}</span>
+                    <span>Final Destination: {{ $daytrip['destinationsName'] }}</span>
+                    <span>Total passengers: {{ $booking['infants'] + $booking['children'] + $booking['adults'] + $booking['elderly'] }}</span>
                 </div>
 
-                <!-- location summary -->
-                <div class="card">
-                    <h5>Full location summary</h5>
-                    <span>Trip Starting Date: {{ $booking['startDate'] }}</span>
-                    <span>Initial Collection Location {{ $booking['initalCollectionPoint'] }}</span>
-
-                    <span>Overnight stays information:</span>
-                    @php $i = 1 @endphp
-                    @foreach ($daytrips as $daytrip)
-                    <span>Overnight stay {{ $i++ }}</span>
-                    <span>Date: {{ $daytrip['date'] }}</span>
-                    <span>Destination: {{ $daytrip['destinationsName'] }}</span>
-                    @endforeach
-                </div>
 
                 <!-- Passenger Summary -->
                 <div class="card">
