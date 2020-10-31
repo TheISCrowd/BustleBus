@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive tk-gill-sans-nova">
     <table class="table">
         <caption>List of clients</caption>
         <tr>
@@ -51,7 +51,7 @@
  });
 </script>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#addClient">
+<button type="button" class="btn btn-success tk-gill-sans-nova" data-toggle="modal" data-target="#addClient">
     Create Client
 </button>
 

@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="card-body">
-                <form method="POST" action='{{ url("hr/update-admin") }}' aria-label="{{ __('Register admin') }}">
+                <form method="POST" action='{{ url("hr/updated-admin") }}' aria-label="{{ __('Register admin') }}">
                 
                     
 
@@ -59,7 +59,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-warning">Update</button>
                     </div>
                 </form>
             </div>

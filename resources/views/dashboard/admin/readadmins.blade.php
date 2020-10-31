@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive tk-gill-sans-nova">
     <table class="table">
         <caption>List of Admin Accounts</caption>
         <tr>

@@ -1,11 +1,20 @@
 @extends('layouts.app')
+<style>
+.card {
+    font-size: 1.1em;
+}
 
+.card-body {
+    background: #F8F8F8;
+}
+
+</style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <!-- Please do not edit the blade code below this comment -->
-            <div class="card">
+            <div class="card tk-gill-sans-nova">
                 <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -61,20 +70,6 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
-
-<br>
-<br>
-                                    <a class="btn btn-link" href="{{ route('adminlogin') }}">
-                                        {{ __('Admin Login') }}
-                                    </a>
-                                   
-                                    <a class="btn btn-link" href="{{ route('hrlogin') }}">
-                                        {{ __('Human Resources Login') }}
-                                    </a>
-              
-                                    <a class="btn btn-link" href="{{ url('http://localhost:8080') }}">
-                                        {{ __('Client') }}
-                                    </a>
                                 </div>
                             </div>
                         </form>

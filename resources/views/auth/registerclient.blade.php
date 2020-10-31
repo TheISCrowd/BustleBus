@@ -1,6 +1,6 @@
 <div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content tk-gill-sans-nova>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Create a new Client user</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -94,7 +94,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-success">Register</button>
                     </div>
                 </div>
             </form>

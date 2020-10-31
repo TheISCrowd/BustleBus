@@ -156,7 +156,7 @@ class BookingController extends Controller
         $request->session()->get('booking')->save();
         $request->session()->get('daytrip')->save();   
 
-        return view('dashboard.dashboard');
+        return view('dashboard.client.booking_wizard.success');
     }
 
 

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 /* ------------ All PUBLIC views/routes START here ------------  */
 
 //public page views
-Route::get('/', function () {return redirect('http://localhost:8080/login');});
+Route::view('/', 'auth.login');
 Route::view('/contactus', 'contactus');
 Route::view('/aboutus', 'aboutus');
 Route::view('/faq', 'contactus');

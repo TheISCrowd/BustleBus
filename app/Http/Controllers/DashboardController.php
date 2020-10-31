@@ -87,12 +87,11 @@ class DashboardController extends Controller
         $validator = Validator::make($request->all(),  [
             'firstName' => ['required', 'string', 'max:255'],
             'lastName' => ['required', 'string', 'max:225'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:drivers'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'dateOfBirth'=>['required','date'],
             'contactNumber' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
             'dateEmployed'=> ['required','date'],
             'hometown' => ['required','string', 'max:255'],
-            //'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
         if ($validator->fails()) {
@@ -119,21 +118,17 @@ class DashboardController extends Controller
     public function updateAdmin(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
-            
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->with(['updatefail' => 'The update failed! Click "Update" for more information.'])->withInput()->withErrors($validator);
         }
 
-        $admin = Admin::where('adminID',$request['adminID'])->update([
+        $admin = Admin::where('id',$request['adminID'])->update([
             'name' => $request['name'],
             'email' => $request['email'],
-            
         ]);
-
-        
 
         return redirect()->back()->with(['updatesuccess' => 'The update was successful!']);
     }
@@ -143,14 +138,13 @@ class DashboardController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'cell' => ['required', 'string', 'regex:/^(0)[0-9]{9}/i'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->with(['updatefail' => 'The update failed! Click "Update" for more information.'])->withInput()->withErrors($validator);
         }
-        echo "heelo";
+
         $admin = User::where('id',$request['clientID'])->update([
             'name' => $request['name'],
             'surname' =>$request['surname'],
@@ -188,12 +182,12 @@ class DashboardController extends Controller
     public function deleteBooking(Request $request)
     {
         Booking::where('bookingID',$request['bookingID'])->update(['complete' => 'Yes']);
-        return view('dashboard.dashboard')->with(['bookingsuccess' => 'The booking is complete!']);
+        return redirect()->back()->with(['bookingsuccess' => 'The booking is complete!']);
     }
 
     public function assignDriver(Request $request)
     {
 
-        return view('dashboard.dashboard')->with(['assignsuccess' => 'The driver is assigned!']);
+        return redirect()->back()->with(['assignsuccess' => 'The driver is assigned!']);
     }
 }
