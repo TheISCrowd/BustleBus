@@ -13,7 +13,7 @@
                 @csrf
 
                 <span class="tk-gill-sans-nova">Start Date:</span>
-                <input type="date" class="form-control form-control-sm @error('startDate') is-invalid @enderror" name="startDate" id="startDate" required>
+                <input type="date" class="form-control form-control-sm @error('startDate') is-invalid @enderror" name="startDate" id="startDate" required value="{{ $modelData['startDate'] }}">
 
                 <!-- start date error reporting -->
                 @error('startDate')
@@ -24,9 +24,8 @@
 
 
                 <!-- Start destination label and input -->
-
                 <span class="tk-gill-sans-nova">Leaving from:</span>
-                <input type="text" class="form-control form-control-sm @error('initalCollectionPoint') is-invalid @enderror" name="initalCollectionPoint" id="initalCollectionPoint" required autocomplete="off" placeholder="Type and select the adress from the list">
+                <input type="text" class="form-control form-control-sm @error('initalCollectionPoint') is-invalid @enderror" name="initalCollectionPoint" id="initalCollectionPoint" required autocomplete="off" placeholder="Type and select the adress from the list" value="{{ $modelData['initalCollectionPoint'] }}">
                 @error('initalCollectionPoint')
                 <span class="invalid-feedback" role=alert>
                     <strong>{{ $errors->first('initalCollectionPoint') }}</strong>
@@ -36,7 +35,7 @@
 
 
                 <span class="tk-gill-sans-nova">Destination is:</span>
-                <input type="text" class="form-control form-control-sm" id="destinationsName" name="destinationsName" autocomplete="off" required placeholder="Type and select the adress from the list">
+                <input type="text" class="form-control form-control-sm" id="destinationsName" name="destinationsName" autocomplete="off" required placeholder="Type and select the adress from the list" value="{{ $modelData['destinationsName'] }}">
                 @error('destinationsName')
                 <span class="invalid-feedback" role=alert>
                     <strong>{{ $errors->first('destinationsName') }}</strong>

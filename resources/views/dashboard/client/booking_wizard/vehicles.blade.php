@@ -15,7 +15,7 @@
                 @if($numPassengers > 4 || $trailer == true || $disabled == true || $extra == true)
                 @else
                 <span class="tk-gill-sans-nova">Sedan:</span>
-                <input type="radio" style="vertical-align: -0.3em" name="vehicleType" value="Sedan"> <br>
+                <input type="radio" style="vertical-align: -0.3em" name="vehicleType" value="Sedan" @if ($modelData['vehicleType'] == 'Sedan') checked @endif> <br>
                 @endif
 
 
@@ -24,12 +24,12 @@
 
                 @else
                 <span class="tk-gill-sans-nova">Suv:</span>
-                <input type="radio" style="vertical-align: -0.3em" name="vehicleType" value="Suv"> <br>
+                <input type="radio" style="vertical-align: -0.3em" name="vehicleType" value="Suv" @if ($modelData['vehicleType'] == 'Suv') checked @endif> <br>
                 @endif
 
                 <!-- a van meets all of the required specifications so no if statements -->
                 <span class="tk-gill-sans-nova">Van:</span>
-                <input type="radio" style="vertical-align: -0.3em" name="vehicleType" value="Van"> 
+                <input type="radio" style="vertical-align: -0.3em" name="vehicleType" value="Van" @if ($modelData['vehicleType'] == 'Van') checked @endif> 
                 
                
                 <br>

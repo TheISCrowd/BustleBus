@@ -12,11 +12,11 @@
                 @csrf
 
                     <span class="tk-gill-sans-nova">Roofracks:</span>
-                    <input type="checkbox" style="vertical-align: -0.3em" class="" name="roofracks" id="roofracks"> <br>
+                    <input type="checkbox" style="vertical-align: -0.3em" class="" name="roofracks" id="roofracks" @if ($modelData['roofracks'] == 'on') checked @endif> <br>
                     <span class="tk-gill-sans-nova">Trailer:</span>
-                    <input type="checkbox" style="vertical-align: -0.3em" class="" name="trailer" id="trailer"> <br>
+                    <input type="checkbox" style="vertical-align: -0.3em" class="" name="trailer" id="trailer" @if ($modelData['trailer'] == 'on') checked @endif> <br>
                     <span class="tk-gill-sans-nova">Extra Luggage:</span>
-                    <input type="checkbox" style="vertical-align: -0.3em" class="" name="extra" id="extra">
+                    <input type="checkbox" style="vertical-align: -0.3em" class="" name="extra" id="extra" @if ($modelData['extra'] == 'on') checked @endif>
 
                 <br>
                 <br>

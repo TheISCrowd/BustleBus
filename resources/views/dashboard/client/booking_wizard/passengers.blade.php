@@ -43,22 +43,22 @@
 
                 <!-- passenger type input fields -->
                 <span class="tk-gill-sans-nova">Infants:</span>
-                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="infants" id="infants" value="{{ old('infants') | 0 }}" min="0" max="15" required>
+                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="infants" id="infants" value="{{ $modelData['infants'] | 0}}" min="0" max="15" required>
                 <span class="tk-gill-sans-nova"> Children:</span>
-                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="children" id="children" value="{{ old('children') | 0 }}" min="0" max="15" required>
+                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="children" id="children" value="{{ $modelData['children'] | 0}}" min="0" max="15" required>
                 <span class="tk-gill-sans-nova">Adults:</span>
-                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="adults" id="adults" value="{{ old('adults') | 0 }}" min="0" max="15" required>
+                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="adults" id="adults" value="{{ $modelData['adults'] | 0 }}" min="0" max="15" required>
                 <span class="tk-gill-sans-nova">Elderly:</span>
-                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="elderly" id="elderly" value="{{ old('elderly') | 0 }}" min="0" max="15" required>
+                <input type="number" class="form-control form-control-sm @error('maximum') is-invalid @enderror" name="elderly" id="elderly" value="{{ $modelData['elderly'] | 0 }}" min="0" max="15" required>
 
                 <br>
 
                 <!-- special passenger assistance fields -->
                 <span class="tk-gill-sans-nova">Disabled passengers? </span>
-                <input type="checkbox" style="vertical-align: -0.3em;" class="@error('disabled') is-invalid @enderror" name="disabled" id="disabled">
+                <input type="checkbox" style="vertical-align: -0.3em;" class="@error('disabled') is-invalid @enderror" name="disabled" id="disabled" @if ($modelData['disabled'] == "on") checked @endif>
                 <br>
                 <span class="tk-gill-sans-nova">Infant chairs? </span>
-                <input type="checkbox" style="vertical-align: -0.3em" class="@error('babychair') is-invalid @enderror" name="babychair" id="babychair">
+                <input type="checkbox" style="vertical-align: -0.3em" class="@error('babychair') is-invalid @enderror" name="babychair" id="babychair" @if ($modelData['babychair'] > 0) checked @endif>
 
                
                 <br>
