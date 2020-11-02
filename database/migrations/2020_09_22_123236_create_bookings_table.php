@@ -28,6 +28,7 @@ class CreateBookingsTable extends Migration
             $table->string('extra')->nullable();
             $table->string('vehicleType')->default('No');
             $table->string('initalCollectionPoint')->nullable();
+            $table->string('dropOff')->nullable();
             $table->string('complete')->nullable();
             $table->foreignID('clientID')->nullable();
             $table->foreign('clientID')->references('id')->on('users')->nullable();

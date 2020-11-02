@@ -57,7 +57,7 @@
                     </ul>
                     <div class="tab-content tk-gill-sans-nova" id="myTabContent">
                         <div class="tab-pane fade show active" id="bookings" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readbookings', ['bookings' => $bookings])</div>
-                        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
+                        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers], ['modelData' => $modelData])</div>
                         <div class="tab-pane fade" id="clients" role="tabpanel" aria-labelledby="contact-tab">@include('dashboard.client.readclients', ['clients' => $clients])</div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     </ul>
                     <div class="tab-content tk-gill-sans-nova" id="myTabContent">
                         <div class="tab-pane fade show active" id="admins" role="tabpanel" aria-labelledby="home-tab">@include('dashboard.admin.readadmins', ['admins' => $admins])</div>
-                        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers])</div>
+                        <div class="tab-pane fade" id="drivers" role="tabpanel" aria-labelledby="profile-tab">@include('dashboard.admin.driver.readdrivers', ['drivers' => $drivers], ['modelData' => $modelData])</div>
                     </div>
                 </div>
             </div>

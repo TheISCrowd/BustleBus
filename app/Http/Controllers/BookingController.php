@@ -10,29 +10,25 @@ use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
-    // Show the start-booking view
-    public function startBooking(Request $request)
-    {
-        $booking = new Booking();
-        $daytrip = new Daytrip();
-
-        $request->session()->put('booking', $booking);
-        $request->session()->put('daytrip', $daytrip);
-
-        return view('dashboard.client.booking_wizard.start');
-    }
-
     public function createStepOne(Request $request)
     {
+        if (empty($request->session()->get('booking'))) {
+            $booking = new Booking();
+            $daytrip = new Daytrip();
+        } else {
+            $booking = $request->session()->get('booking');
+            $daytrip = $request->session()->get('daytrip');
+        }
 
-        $booking = $request->session()->get('booking');
-        $daytrip = $request->session()->get('daytrip');
+
         $data = [
             'startDate' => $booking['startDate'],
             'initalCollectionPoint' => $booking['initalCollectionPoint'],
             'destinationsName' => $daytrip['destinationsName']
         ];
 
+        $request->session()->put('booking', $booking);
+        $request->session()->put('daytrip', $daytrip);
 
         return view('dashboard.client.booking_wizard.destinations', ['modelData' => $data]);
     }
@@ -58,15 +54,18 @@ class BookingController extends Controller
         }
 
         $booking = $request->session()->get('booking');
+
         $booking->fill([
             'startDate' => $request['startDate'],
-            'initalCollectionPoint' => $request['initalCollectionPoint']
+            'initalCollectionPoint' => $request['initalCollectionPoint'],
         ]);
 
         $daytrip = $request->session()->get('daytrip');
         $daytrip->fill([
             'destinationsName' => $request['destinationsName']
         ]);
+
+        $booking->fill(['dropOff' => $daytrip['destinationsName']]);
 
         $request->session()->put('booking', $booking);
         $request->session()->put('daytrip', $daytrip);
@@ -97,7 +96,7 @@ class BookingController extends Controller
             'children' => $request['children'],
             'adults' => $request['adults'],
             'elderly' => $request['elderly'],
-            'disabled' => $request['disabled']            
+            'disabled' => $request['disabled']
         ]);
 
         if ($request['babychair'] == 'on') {
@@ -126,7 +125,7 @@ class BookingController extends Controller
 
 
         // populate session booking data with input fields
-        
+
         $request->session()->put('booking', $booking);
 
         return redirect()->route('booking.step.three.create');

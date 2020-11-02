@@ -2,10 +2,10 @@
     <table class="table">
         <caption>List of Drivers</caption>
         <tr>
-            <th><strong>Driver ID<strong></th>
-            <th><strong>First Name<strong></th>
-            <th><strong>Last Name<strong></th>
-            <th><strong>e-mail<strong></th>
+            <th><strong>ID<strong></th>
+            <th><strong>Name<strong></th>
+            <th><strong>Surname<strong></th>
+            <th><strong>Email<strong></th>
             <th><strong>Date of Birth<strong></th>
             <th><strong>Cell<strong></th>
             <th><strong>Date Employed<strong></th>
@@ -20,6 +20,7 @@
             <td>{{$driver->email}}</td>
             <td>{{$driver->dateOfBirth}}</td>
             <td>{{$driver->contactNumber}}</td>
+            
             <td>{{$driver->dateEmployed}}</td>
             <td>{{$driver->hometown}}</td>
             <td><button type="button" class="btn btn-warning edit" data-toggle="modal" data-target="#updateDriver">Update</button></td>

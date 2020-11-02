@@ -12,10 +12,10 @@
 
                     @csrf
                     <div class="form-group row">
-                        <label for="deleteDriverID" class="col-md-4 col-form-label text-md-right">{{ __('Driver ID') }}</label>
+                        <label for="deleteAdminId" class="col-md-4 col-form-label text-md-right">{{ __('ID') }}</label>
 
                         <div class="col-md-6">
-                            <input id="deleteDriverID" type="text" class="form-control @error('driverID') is-invalid @enderror" name="driverID" value="{{ old('driverID') }}" placeholder="(1)" required autofocus>
+                            <input id="deleteAdminId" type="text" class="form-control @error('driverID') is-invalid @enderror" name="adminID" value="{{ old('driverID') }}" placeholder="(1)" required autofocus>
 
                             @error('driverID')
                             <span class="invalid-feedback" role=alert>
@@ -26,10 +26,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="deleteFirstName" class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+                        <label for="deleteAdminName" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="deleteFirstName" type="text" class="form-control @error('fistName') is-invalid @enderror" name="firstName" value="{{ old('fistName') }}" placeholder="(John)" required autofocus>
+                            <input id="deleteAdminName" type="text" class="form-control @error('fistName') is-invalid @enderror" name="name" value="{{ old('fistName') }}" placeholder="(John)" required autofocus>
 
                             @error('firstName')
                             <span class="invalid-feedback" role=alert>
@@ -40,10 +40,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="deleteLastName" class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+                        <label for="deleteAdminEmail" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
                         <div class="col-md-6">
-                            <input id="deleteLastName" type="text" class="form-control @error('lastName') is-invalid @enderror" name="lastName" value="{{ old('lastName') }}" placeholder="(Doe)" required autofocus>
+                            <input id="deleteAdminEmail" type="text" class="form-control @error('lastName') is-invalid @enderror" name="email" value="{{ old('lastName') }}" placeholder="(Doe)" required autofocus>
 
                             @error('lastName')
                             <span class="invalid-feedback" role=alert>

@@ -16,6 +16,6 @@ class Booking extends Model
                           'disabled', 'babychair',
     'roofracks', 'trailer', 'extra',
     'vehicleType',
-    'initalCollectionPoint', 'latLong',
+    'initalCollectionPoint', 'latLong', 'dropOff',
     'clientID', 'driverID'];
 }

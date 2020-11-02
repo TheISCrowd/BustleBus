@@ -67,6 +67,11 @@ Route::post('/admin/updateclient', [App\Http\Controllers\DashboardController::cl
 Route::post('/admin/deleteclient', [App\Http\Controllers\DashboardController::class, 'deleteClient'])->name('delete.client.post');
 //created-driver view
 Route::view('/admin/driver', 'driver.created-driver')->middleware('auth:admin');
+Route::post('/list-drivers', [App\Http\Controllers\DashboardController::class, 'listOfDrivers'])->name('list.drivers.post');
+Route::post('/get-drivers', [App\Http\Controllers\DashboardController::class, 'getDrivers'])->name('get.drivers.post');
+Route::post('/assign-driver', [App\Http\Controllers\DashboardController::class, 'assignDriver'])->name('assign.driver.post');
+Route::post('/unassign-driver', [App\Http\Controllers\DashboardController::class, 'unassignDriver'])->name('unassign.driver.post');
+Route::post('/get-clients', [App\Http\Controllers\DashboardController::class, 'getClients'])->name('get.clients.post');
 
 /* ------------ All ADMIN views/routes END here ------------  */
 
@@ -94,5 +99,7 @@ Route::post('/booking/vehicles', [App\Http\Controllers\BookingController::class,
     // step-five
 Route::get('/booking/confirmation', [App\Http\Controllers\BookingController::class, 'createStepFive'])->middleware('auth')->name('booking.step.five.create');
 Route::post('/booking/confirmation', [App\Http\Controllers\BookingController::class, 'postStepFive'])->middleware('auth')->name('booking.step.five.post');
+
+
 
 /* ------------ All CLIENT views/routes END here ------------  */

@@ -2,11 +2,11 @@
     <table class="table">
         <caption>List of clients</caption>
         <tr>
-            <th><strong>client ID<strong></th>
-            <th><strong>First Name<strong></th>
-            <th><strong>Last Name<strong></th>
+            <th><strong>ID<strong></th>
+            <th><strong>Name<strong></th>
+            <th><strong>Surname<strong></th>
             <th><strong>Cell<strong></th>
-            <th><strong>e-mail<strong></th>
+            <th><strong>Email<strong></th>
         </tr>
         @foreach ($clients as $client)
         <tr>
@@ -15,7 +15,7 @@
             <td>{{$client->surname}}</td>
             <td>{{$client->cell}}</td>
             <td>{{$client->email}}</td>
-            <td>{{$client->contactNumber}}</td>
+            <td style="padding-right: 300px;">{{$client->contactNumber}}</td>
             <td><Button type = "button" class="btn btn-warning edit" data-toggle="modal" data-target="#updateClient">Update</button></td>
             <td><button type = "button" class="btn btn-danger delete" data-toggle="modal" data-target="#deleteClient">Delete</button></td>
         </tr>

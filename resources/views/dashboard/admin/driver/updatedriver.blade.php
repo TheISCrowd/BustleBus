@@ -84,7 +84,7 @@
                         <label for="updateContactNumber" class="col-md-4 col-form-label text-md-right">{{ __('Cell') }}</label>
 
                         <div class="col-md-6">
-                            <input id="updateContactNumber" type="text" class="form-control @error('contactNumber') is-invalid @enderror" name="contactNumber" value="{{ old('contactNumber') }}" placeholder="(0845884750)" required autofocus>
+                            <input id="updateContactNumber" type="tel" max="10" class="form-control @error('contactNumber') is-invalid @enderror" name="contactNumber" value="{{ old('contactNumber') }}" placeholder="(0845884750)" required autofocus>
 
                             @error('contactNumber')
                             <span class="invalid-feedback" role=alert>
