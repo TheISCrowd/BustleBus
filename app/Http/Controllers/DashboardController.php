@@ -178,14 +178,14 @@ class DashboardController extends Controller
             return redirect()->back()->with(['updatefail' => 'The update failed! Click "Update" for more information.'])->withInput()->withErrors($validator);
         }
 
-        $admin = User::where('id', $request['clientID'])->update([
-            'name' => $request['name'],
-            'surname' => $request['surname'],
-            'cell' => $request['cell'],
-            'email' => $request['email'],
+        // $admin = User::where('id', $request['clientID'])->update([
+        //     'name' => $request['name'],
+        //     'surname' => $request['surname'],
+        //     'cell' => $request['cell'],
+        //     'email' => $request['email'],
 
-        ]);
-        return redirect()->back()->with(['updatesuccess' => 'The update was successful!']);
+        // ]);
+        return redirect()->back()->with(['updatefail' => 'Correct validation but disabled for the demo!']);
     }
 
     public function getAllClients()
@@ -195,8 +195,8 @@ class DashboardController extends Controller
 
     public function deleteClient(Request $request)
     {
-        $deletedRows = User::where('id', $request['clientID'])->delete();
-        return redirect()->back()->with(['updatesuccess' => 'The deletion was successful!']);
+        //$deletedRows = User::where('id', $request['clientID'])->delete();
+        return redirect()->back()->with(['updatefail' => 'Correct validation but disabled for the demo!']);
     }
 
     public function deleteDriver(Request $request)
@@ -208,6 +208,10 @@ class DashboardController extends Controller
 
     public function deleteAdmin(Request $request)
     {
+        if ($request['email'] == 'admin@bb.com') {
+            return redirect()->back()->with(['updatefail' => 'Please don\'t delete the admin demo user...']);
+        }
+
         $deletedRows = Admin::where('id', $request['adminID'])->where('name', $request['name'])->where('email', $request['email'])->delete();
 
         if ($deletedRows) {

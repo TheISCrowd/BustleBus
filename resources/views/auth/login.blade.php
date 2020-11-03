@@ -1,13 +1,12 @@
 @extends('layouts.app')
 <style>
-.card {
-    font-size: 1.1em;
-}
+    .card {
+        font-size: 1.1em;
+    }
 
-.card-body {
-    background: #F8F8F8;
-}
-
+    .card-body {
+        background: #F8F8F8;
+    }
 </style>
 @section('content')
 <div class="container">
@@ -79,4 +78,66 @@
         </div>
     </div>
 </div>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Please do not edit the blade code below this comment -->
+            <div class="card tk-gill-sans-nova">
+                <div class="card-header"> {{ isset($url) ? ucwords($url) : ""}} {{ __('Demo Login Details') }}</div>
+                <div class="card-body">
+                    <div class="col">
+                        @isset($url)
+                        @if($url == 'hr')
+                        <span><strong>E-mail Address:</strong></span>
+                        <span id="emailfill">superuser@bustlebus.com</span>
+                        <br>
+                        <span><strong>Password:</strong></span>
+                        <span>password</span>
+                        <br>
+                        <br>
+                        <button id="fillfields" class="btn btn-primary">
+                            {{ __('Autofill login fields') }}
+                        </button>
+                        @else
+                        <span><strong>E-mail Address:</strong></span>
+                        <span id="emailfill">admin@bb.com</span>
+                        <br>
+                        <span><strong>Password:</strong></span>
+                        <span>password</span>
+                        <br>
+                        <br>
+                        <button id="fillfields" class="btn btn-primary">
+                            {{ __('Autofill login fields') }}
+                        </button>
+                        @endif
+                        @else
+                        <span><strong>E-mail Address:</strong></span>
+                        <span id="emailfill">johndoe@gmail.com</span>
+                        <br>
+                        <span><strong>Password:</strong></span>
+                        <span>password</span>
+                        <br>
+                        <br>
+                        <a id="fillfields" class="btn btn-primary" role="button">
+                            {{ __('Autofill login fields') }}
+                        </a>
+                        @endisset
+                    </div>
+                </div>
+                <!-- Please do not edit the blade code above this comment -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.js'></script>
+<script>
+    $(document).ready(function() {
+        $('#fillfields').click(function() {
+            $('#email').val($('#emailfill').html());
+            $('#password').val('password');
+        });
+    });
+</script>
 @endsection
